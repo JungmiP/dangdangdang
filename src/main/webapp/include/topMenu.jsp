@@ -14,7 +14,7 @@
             	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">수업 및 이용권</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
                 	<a href="facility.html" class="dropdown-item">수업 소개</a>
-                    <a href="team.html" class="dropdown-item">이용권 결제</a>
+                    <a href="/dangdangdang/payment/payment.jsp" class="dropdown-item">이용권 결제</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

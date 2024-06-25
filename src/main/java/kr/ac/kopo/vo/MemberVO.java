@@ -1,0 +1,106 @@
+package kr.ac.kopo.vo;
+
+public class MemberVO {
+	private String id;
+	private String password;
+	private String name;
+	private String birthDate;
+	private String phone;
+	private String post;
+	private String basicAddr;
+	private String detailAddr;
+	private String email;
+	private String regDate;
+	private char grade;
+	private char oauth;
+	private char admin;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
+	public String getBasicAddr() {
+		return basicAddr;
+	}
+	public void setBasicAddr(String basicAddr) {
+		this.basicAddr = basicAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public char getGrade() {
+		return grade;
+	}
+	public void setGrade(char grade) {
+		this.grade = grade;
+	}
+	public char getOauth() {
+		return oauth;
+	}
+	public void setOauth(char oauth) {
+		this.oauth = oauth;
+	}
+	public char getAdmin() {
+		return admin;
+	}
+	public void setAdmin(char admin) {
+		this.admin = admin;
+	}
+	
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", birthDate=" + birthDate
+				+ ", phone=" + phone + ", post=" + post + ", basicAddr=" + basicAddr + ", detailAddr=" + detailAddr
+				+ ", email=" + email + ", regDate=" + regDate + ", grade=" + grade + ", oauth=" + oauth + ", admin="
+				+ admin + "]";
+	}	
+	
+}
