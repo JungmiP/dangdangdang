@@ -9,8 +9,9 @@ public class PaymentController implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String[] passNos = request.getParameterValues("no");
+		request.setAttribute("passNoList", passNos);
+		return "/payment/payment.jsp";
 	}
 
 }

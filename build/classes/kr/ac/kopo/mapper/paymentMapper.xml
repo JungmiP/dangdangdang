@@ -16,7 +16,8 @@
   		  from payment
   	</sql>
   	
-  	<!-- 게시글조회(제목, 작성자) -->
+  	<!-- 
+  	 게시글조회(제목, 작성자)
   	<select id="selectWhere" parameterType="boardVO" resultMap="boardMap">
   		<include refid="selectBoard" />
   		<where>
@@ -29,7 +30,7 @@
   		</where>
   	</select>
   	
-  	<!-- 게시글 번호로 조회 -->
+  	게시글 번호로 조회
   	<select id="selectByNo" parameterType="int" resultMap="boardMap">
   		select no, title, writer, content, view_cnt, to_char(reg_date, 'yyyy-mm-dd') reg_date
   		  from t_board
@@ -48,7 +49,7 @@
   		 where no = #{no}
   	</select>
   	
-  	<!-- 전체게시글 조회 -->
+  	전체게시글 조회 
   	<select id="selectAll" resultType="boardVO">
   		select no, title, writer, to_char(reg_date, 'yyyy-mm-dd') regDate
   		  from t_board
@@ -59,10 +60,15 @@
   		  from t_board
   		 order by no desc  	
   	</select>
-  	
+  	 -->
   	<!-- 결제 내역 삽입 -->
   	<insert id="insert" parameterType="paymentVO">
+  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+  		SELECT SEQ_PAYMENT_NO.nextval FROM dual
+  		</selectKey>
+  		
   		INSERT INTO PAYMENT (NO, MEMBER_ID, PASS_NO, AMOUNT, PAY_METHOD)
-		VALUES (SEQ_PAYMENT_NO.nextval, #{memberId}, #{passNo}, #{amount}, #{payMethod})
+		VALUES (#{no}, #{memberId}, #{passNo}, #{amount}, #{payMethod})
   	</insert>
+  	
 </mapper>

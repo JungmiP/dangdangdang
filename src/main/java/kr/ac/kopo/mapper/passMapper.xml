@@ -20,12 +20,30 @@
   		 where no = #{no}
   	</select>
   	
-    	
+    <!-- 이용권 번호로 가격 조회 -->
+  	<select id="selectPriceByNo" parameterType="int" resultType="int">
+  		select price 
+  		  from pass
+  		 where no = #{no}
+  	</select>
   	<!-- 전체 이용권 조회 -->
   	<select id="selectAll" resultMap="passMap">
   		<include refid="selectPass" />
-  		 order by total_classes  	
+  		 order by total_classes 	
   	</select>
+  	 
+  	 <!-- 이용권 번호로 endDate, remainClasses 조회 -->
+  	 <select id="selectForSub" parameterType="int" resultType="subscriptionVO">
+  		 SELECT no as passNo
+  		 	  , ADD_MONTHS(to_date(to_char(sysdate, 'yyyymmdd') || '235959', 'yyyymmddhh24miss'), duration) as endDate
+  			  , total_classes as remainClasses
+  		   FROM PASS 
+  		  WHERE NO = #{no}   		  
+  	 </select>
+  	 
+  	 
+  	 
+  	 
   	  	
   	<!-- 이용권 내역 삽입 -->
   	<insert id="insert" parameterType="passVO">

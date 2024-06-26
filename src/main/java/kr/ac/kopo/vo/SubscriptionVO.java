@@ -8,6 +8,7 @@ public class SubscriptionVO {
 	private String startDate;
 	private String endDate;
 	private int remainClasses;
+	
 	public int getNo() {
 		return no;
 	}

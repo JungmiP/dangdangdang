@@ -21,14 +21,14 @@
   	<!-- 이용권 내역 삽입 -->
   	<insert id="insert" parameterType="subscriptionVO">
   		INSERT INTO SUBSCRIPTION (NO, PAYMENT_NO, MEMBER_ID , PASS_NO, START_DATE, END_DATE, REMAIN_CLASSES)
-		SELECT SEQ_SUBSCRIPTION_NO.nextval
-			 , SEQ_PAYMENT_NO.currval
-			 , #{memberId}
-    		 , #{passNo}
-    		 , SYSDATE
-    		 , ADD_MONTHS(to_date(to_char(SYSDATE, 'yyyymmdd') || '235959', 'yyyymmddhh24miss'), duration) 
-   			 , total_classes 
-  		  FROM pass 
- 		 WHERE NO = #{passNo};
+		VALUES (
+			SEQ_SUBSCRIPTION_NO.nextval
+		  , #{paymentNo}
+		  , #{memberId}
+		  , #{passNo}
+		  , SYSDATE
+		  , TO_DATE(#{endDate}, 'yyyy-mm-dd hh24:mi:ss')
+		  , #{remainClasses}		  
+		)
   	</insert>
 </mapper>

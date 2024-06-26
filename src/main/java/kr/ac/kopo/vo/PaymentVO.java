@@ -2,11 +2,12 @@ package kr.ac.kopo.vo;
 
 public class PaymentVO {
 	private int no;
-	private String name;
-	private String description;
-	private int price;
-	private int duration;
-	private int totalClasses;
+	private String memberId;
+	private int passNo;
+	private int amount;
+	private String payMethod;
+	private String payDate;
+	
 	
 	public int getNo() {
 		return no;
@@ -14,42 +15,42 @@ public class PaymentVO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getName() {
-		return name;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getDescription() {
-		return description;
+	public int getPassNo() {
+		return passNo;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPassNo(int passNo) {
+		this.passNo = passNo;
 	}
-	public int getPrice() {
-		return price;
+	public int getAmount() {
+		return amount;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
-	public int getDuration() {
-		return duration;
+	public String getPayMethod() {
+		return payMethod;
 	}
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
 	}
-	public int getTotalClasses() {
-		return totalClasses;
+	public String getPayDate() {
+		return payDate;
 	}
-	public void setTotalClasses(int totalClasses) {
-		this.totalClasses = totalClasses;
+	public void setPayDate(String payDate) {
+		this.payDate = payDate;
 	}
 	
 	@Override
 	public String toString() {
-		return "PaymentVO [no=" + no + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", duration=" + duration + ", totalClasses=" + totalClasses + "]";
+		return "PaymentVO [no=" + no + ", memberId=" + memberId + ", passNo=" + passNo + ", amount=" + amount
+				+ ", payMethod=" + payMethod + ", payDate=" + payDate + "]";
 	}
-	
+
 	
 }

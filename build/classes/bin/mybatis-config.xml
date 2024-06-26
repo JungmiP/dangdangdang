@@ -2,19 +2,20 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
-	<!-- 만약 null로 데이터가 전달 되었다면 빈칸이 아니라 null로 인식하라는 설정.
-	     value의 NULL은 반드시 대문자로 기재할 것. 소문자로 기재시 에러 발생  
+	<!--  
 	<settings>
-	<setting name="jdbcTypeForNull" value="NULL"></setting>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 	-->
-	<properties resource="db.properties" />
+	<properties resource="/bin/db.properties" />
 	
 	<typeAliases>
 		<typeAlias type="kr.ac.kopo.vo.MemberVO" alias="memberVO" />
 		<typeAlias type="kr.ac.kopo.vo.PaymentVO" alias="paymentVO" />
 		<typeAlias type="kr.ac.kopo.vo.SubscriptionVO" alias="subscriptionVO" />
+		<typeAlias type="kr.ac.kopo.vo.PassVO" alias="passVO" />
 	</typeAliases>
 
   <environments default="development">
@@ -35,7 +36,8 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="kr/ac/mapper/paymentMapper.xml" />
-    <mapper resource="kr/ac/mapper/subscriptionMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/passMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/paymentMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/subscriptionMapper.xml" />
   </mappers>
 </configuration>

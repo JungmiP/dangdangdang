@@ -5,13 +5,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.ac.kopo.vo.PassVO;
+import kr.ac.kopo.vo.SubscriptionVO;
 
 public class PassDAO {
 	private SqlSession session;
 
 	public PassDAO() {
 		session = new MyBatisConfig().getInstance();
-		System.out.println("session: " + session);
 	}
 	
 	public List<PassVO> selectAll() {
@@ -22,6 +22,11 @@ public class PassDAO {
 	public PassVO selectOne(int no) {
 		PassVO pass = session.selectOne("dao.PassDAO.selectByNo", no);
 		return pass;
+	}
+	
+	public SubscriptionVO selectForSub(int no) {
+		SubscriptionVO sub = session.selectOne("dao.PassDAO.selectForSub", no);
+		return sub;
 	}
 	
 	public void insert() {

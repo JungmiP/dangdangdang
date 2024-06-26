@@ -11,7 +11,7 @@ public class MyBatisConfig {
 	private SqlSession session;
 	public MyBatisConfig() {
 		try {
-			String resource = "/resources/mybatis-config.xml";
+			String resource = "/bin/mybatis-config.xml";
 			
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);

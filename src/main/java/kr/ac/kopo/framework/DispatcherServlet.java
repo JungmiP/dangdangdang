@@ -26,7 +26,6 @@ public class DispatcherServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		uri = uri.substring(request.getContextPath().length());
-		System.out.println("요청 uri: " + uri);
 		
 		try {
 			Controller control = mappings.getController(uri);
