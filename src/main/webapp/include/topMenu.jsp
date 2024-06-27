@@ -20,7 +20,7 @@
             <div class="nav-item dropdown">
             	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">예약</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                	<a href="/dangdangdang/reservation/visitReservation.jsp" class="dropdown-item">상담 예약</a>
+                	<a href="/dangdangdang/visitReserve.do" class="dropdown-item">상담 예약</a>
                     <a href="/dangdangdang/reservation/classReservation.jsp" class="dropdown-item">수업 예약</a>
                 </div>
            	</div>

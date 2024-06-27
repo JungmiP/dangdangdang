@@ -11,6 +11,7 @@ public class PaymentController implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String[] passNos = request.getParameterValues("no");
 		request.setAttribute("passNoList", passNos);
+		
 		return "/payment/payment.jsp";
 	}
 

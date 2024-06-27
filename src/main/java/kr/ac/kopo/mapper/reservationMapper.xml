@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ReservationDAO">
+  	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
+  	<resultMap type="reservationVO" id="reservationMap">
+  		<result column="member_id" property="memberId" />
+  		<result column="reserve_date" property="reserveDate" />
+  		<result column="reg_date" property="regDate" />
+  	</resultMap>
+  	
+  	<sql id="selectReservation">
+  		SELECT no, member_id, status, reserve_date, detail, reg_date
+  		  FROM RESERVATION
+  	</sql>
+  	
+  	<!-- 예약 번호로 조회 -->
+  	<select id="selectByNo" parameterType="int" resultMap="reservationMap">
+  		<include refid="selectReservation" />
+  		 where no = #{no}
+  	</select>
+  	
+    <!-- 예약 날짜로 조회 -->
+  	<select id="selectByReserveDate" parameterType="String" resultMap="reservationMap">
+  		<include refid="selectReservation" /> 
+  		 <if test="reserveDate != null ">
+  		 where to_char(reserve_date, 'yyyymmdd') = #{reserveDate}
+  		 </if>
+  		 <if test="reserveDate == null">
+  		 where to_char(reserve_date, 'yyyymmdd') = to_char(SYSDATE, 'yyyymmdd') 
+  		 </if>
+  	</select>
+  	
+  	<!-- 전체 예약 조회 -->
+  	<select id="selectAll" resultMap="reservationMap">
+  		<include refid="selectReservation" />
+  		 order by reserve_date desc 	
+  	</select>
+  	   	   	  	
+  	<!-- 예약 삽입 -->
+  	<insert id="insert" parameterType="reservationVO">
+  		INSERT INTO RESERVATION (NO, MEMBER_ID, RESERVE_DATE, DETAIL)
+		VALUES (
+				SEQ_RESERVATION_NO.nextval
+			  , #{memberId} 
+			  , TO_DATE(TO_CHAR(SYSDATE, 'yyyymmdd') || #{reserveDate}, 'yyyymmddhh24:mi')
+		      , #{detail}
+		)
+  	</insert>
+</mapper>

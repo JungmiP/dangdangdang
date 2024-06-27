@@ -100,19 +100,19 @@
                                     	<div class="col-sm-12">이용권 선택</div>
                                         <div class="col-sm-4">
                                             <div class="form-floating">
-                                                <input type="radio" class="form-control border-0" id="one" name="pass" value="1">
+                                                <input type="radio" class="form-control border-0" id="one" name="pass" value="${passNoList[0]}">
                                                 <label for="one">1회권</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-floating">
-                                                <input type="radio" class="form-control border-0" id="ten" name="pass" value="2">
+                                                <input type="radio" class="form-control border-0" id="ten" name="pass" value="${passNoList[1]}">
                                                 <label for="ten">10회권</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-floating">
-                                                <input type="radio" class="form-control border-0" id="thirty" name="pass" value="3">
+                                                <input type="radio" class="form-control border-0" id="thirty" name="pass" value="${passNoList[2]}">
                                                 <label for="thirty">30회권</label>
                                             </div>
                                         </div>

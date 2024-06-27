@@ -38,7 +38,7 @@
     		<c:forEach var="p" items="${passList}" varStatus="stat">
     			param += 'no=${p.no}'
 	    		<c:if test="${ not stat.last }">
-	    			param += '$'
+	    			param += '&'
 	    		</c:if>
     		</c:forEach>    		
     		$("#buyBtn").click(function(){

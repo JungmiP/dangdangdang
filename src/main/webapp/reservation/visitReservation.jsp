@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="../resources/img/favicon.ico" rel="icon">
+    <link href="/dangdangdang/resources/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,23 +23,85 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../resources/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../resources/css/style.css" rel="stylesheet">
-    
-
+    <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">
+    	
+	<link rel="stylesheet" href="/dangdangdang/resources/css/calendar_style.css">
 	
-	<link rel="stylesheet" href="../resources/css/calendar_style.css">
-
+  	<style>
+  		input[type=radio]{
+  			display: none;
+  			margin:10px;
+  		}
+  		
+  		input[type=radio] + label{
+  			display: inline-block;
+  			margin: 2px;
+  			padding: 8px;
+  			background-color: #FFF5F3;
+			text-align:center;
+			border-radius: 10px;
+			width: 30%;
+  		}
+  		
+  		input[type=radio]:checked + label{
+  			color: #FE5D37;
+  			font-weight: bold;
+  		}
+  		
+  		#submitBtn {
+  			background-color: #FFF5F3;
+  			color:#FE5D37;
+  			float:right;
+  			margin: 5px;
+  		}
+  		
+  		.form-label {
+  			margin: 5px;
+  			font-size: 1em;
+  			align-items:flex-start;
+  			font-weight: bold;
+  		}
+  		
+  		
+  	</style>
+  	<script src="/dangdangdang/resources/js/jquery.min.js"></script>
+  	<script src="/dangdangdang/resources/js/popper.js"></script>
+  	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
+  	<script src="/dangdangdang/resources/js/calendar_main2.js"></script>
+  	<script>
+  	
+  	<c:if test="${not empty msg}">
+  		alert("${msg}")
+  		<c:remove var="msg" scope="request" />
+  	</c:if>
+  	
+  	let reserveDates = [];
+  	<c:forEach items="${reserveList}" var="reserve" varStatus="status">
+  		reserveDates['${status.index}'] = '${fn:substring(reserve.reserveDate, 11, 16)}'
+  	</c:forEach>
+  		
+  		$(document).ready(function(){
+  			$(reserveForm.time).each(function(i, el){
+  				if(reserveDates.includes(el.value)){
+  					let tmp = el.id
+  					$("#"+ tmp).attr("onclick", "return false;")
+  					$("label[for="+tmp+"]").css({"background-color": "#9e9e9e", "color" : "#e6e6e6"})
+  				}	
+  			})
+  			
+  		})
+  	</script>
 </head>
 <body>
 <div class="container-xxl bg-white p-0">
-	<jsp:include page="../include/topMenu.jsp" />
+	<jsp:include page="/include/topMenu.jsp" />
 	<!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
@@ -102,35 +166,46 @@
 			              <tbody class="tbody">             
 			              </tbody> 
 				          </table>
-				        </div> 
-				        <button class="button" id="add-button">날짜 선택</button>
+				        </div>
 				      </div>
 				    </div>
-				    <div class="events-container">
+				    <div class="events-container" >
+				    	<div class="events-card">				    		
+				    	</div>
+				    	<div class="row g-3">
+				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm">
+				          		<div class="form-container">
+				          			<!-- 로그인한 유저 아이디로 바꾸기 -->
+				          			<input type="hidden" name="memberId" value="user">
+					            	<div class="form-label" >예약 가능 시간</div>
+					            	
+					            		<input type="radio" id="am10" name="time" value="10:00" class="radio-time" />
+										<label for="am10">AM 10:00</label>
+						            	<input type="radio" id="am11" name="time" value="11:00" class="radio-time" />
+										<label for="am11">AM 11:00</label>
+					            		<input type="radio" id="pm14" name="time" value="14:00" class="radio-time" />
+										<label for="pm14">PM 14:00</label>
+					            		<input type="radio" id="pm15" name="time" value="15:00" class="radio-time" />
+										<label for="pm15">PM 15:00</label>
+					            		<input type="radio" id="pm16" name="time" value="16:00" class="radio-time" />
+										<label for="pm16">PM 16:00</label>
+					            	
+					            	<br>
+					            	<label class="form-label" for="detail" >상담 상세 내용</label>
+					            	<textarea id="detail" name="detail"  cols="40" rows="5" placeholder="상담받고 싶은 내용을 입력하세요."></textarea>
+					            	<button class="button" type="submit" id="submitBtn" >예약하기</button>
+				          		</div>
+				        	</form>				    	
+				    	</div>				    	
 				    </div>
-				    <div class="dialog" id="dialog">
-				        <h2 class="dialog-header"> Add New Event </h2>
-				        <form class="form" id="form">
-				          <div class="form-container" align="center">
-				            <label class="form-label" id="valueFromMyButton" for="name">Event name</label>
-				            <input class="input" type="text" id="name" maxlength="36">
-				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
-				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7">
-				            <input type="button" value="Cancel" class="button" id="cancel-button">
-				            <input type="button" value="OK" class="button button-white" id="ok-button">
-				          </div>
-				        </form>
-				      </div>
+				    
 				  </div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<script src="../resources/js/jquery.min.js"></script>
-  <script src="../resources/js/popper.js"></script>
-  <script src="../resources/js/bootstrap.min.js"></script>
-  <script src="../resources/js/calendar_main.js"></script>
-	<jsp:include page="../include/footer.jsp" />
+	
+	<jsp:include page="/include/footer.jsp" />
 	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 </body>

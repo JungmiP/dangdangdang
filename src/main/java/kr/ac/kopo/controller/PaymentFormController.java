@@ -11,6 +11,7 @@ public class PaymentFormController implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		PaymentService service = new PaymentService();
 		
 		String memberId = request.getParameter("memberId");
@@ -25,9 +26,7 @@ public class PaymentFormController implements Controller{
 		payment.setAmount(amount);
 		payment.setPayMethod(payMethod);
 		
-		System.out.println("service 시작");
 		service.createPayment(payment);
-		System.out.println("service 종료");
 		
 		return "/payment/paymentResult.jsp";
 	}

@@ -12,16 +12,12 @@ public class PaymentService {
 	private PassDAO passDao = new PassDAO();
 	
 	public void createPayment(PaymentVO pay) {
-		System.out.println("1");
 		paymentDao.insert(pay);		
 						
 		SubscriptionVO sub = passDao.selectForSub(pay.getPassNo());
 		sub.setMemberId(pay.getMemberId());
 		sub.setPaymentNo(pay.getNo());		
 		
-		System.out.println(sub);
-		System.out.println("2");
 		subscriptionDao.insert(sub);
-		System.out.println("3");
 	}
 }
