@@ -40,6 +40,7 @@
   			margin:10px;
   		}
   		
+  		
   		input[type=radio] + label{
   			display: inline-block;
   			margin: 2px;
@@ -69,37 +70,63 @@
   			font-weight: bold;
   		}
   		
+  		.reserved {
+  			background-color: #9e9e9e !important; 
+  			color: #e6e6e6;
+  		}
   		
   	</style>
   	<script src="/dangdangdang/resources/js/jquery.min.js"></script>
   	<script src="/dangdangdang/resources/js/popper.js"></script>
   	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
-  	<script src="/dangdangdang/resources/js/calendar_main2.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dangdangdang/resources/lib/wow/wow.min.js"></script>
+    <script src="/dangdangdang/resources/lib/easing/easing.min.js"></script>
+    <script src="/dangdangdang/resources/lib/waypoints/waypoints.min.js"></script>
+    <script src="/dangdangdang/resources/lib/owlcarousel/owl.carousel.min.js"></script>  	
+  	<script src="/dangdangdang/resources/js/main.js"></script>
+  	<script src="/dangdangdang/resources/js/visitreserve.js"></script>
   	<script>
-  	
-  	<c:if test="${not empty msg}">
-  		alert("${msg}")
-  		<c:remove var="msg" scope="request" />
-  	</c:if>
-  	
-  	let reserveDates = [];
-  	<c:forEach items="${reserveList}" var="reserve" varStatus="status">
-  		reserveDates['${status.index}'] = '${fn:substring(reserve.reserveDate, 11, 16)}'
-  	</c:forEach>
-  		
-  		$(document).ready(function(){
-  			$(reserveForm.time).each(function(i, el){
-  				if(reserveDates.includes(el.value)){
-  					let tmp = el.id
-  					$("#"+ tmp).attr("onclick", "return false;")
-  					$("label[for="+tmp+"]").css({"background-color": "#9e9e9e", "color" : "#e6e6e6"})
-  				}	
-  			})
-  			
-  		})
+  	$(document).ready(function(){
+	  	<c:if test="${not empty msg}">
+	  	// alert 대신 모달창 띄우기
+	  		$("#exampleModal").modal("show");
+	  		<c:remove var="msg" scope="request" />
+	  	</c:if>
+	  	$("#closeModal").click(function() {
+			$("#exampleModal").modal("hide")
+		});
+	  	
+	  	let reserveDates = [];
+	  	<c:forEach items="${reserveList}" var="reserve" varStatus="status">
+	  		reserveDates['${status.index}'] = '${fn:substring(reserve.reserveDate, 11, 16)}'
+	  	</c:forEach>
+	  		
+	  	$(reserveForm.time).each(function(i, el){
+	  		if(reserveDates.includes(el.value)){
+	  			let tmp = el.id
+	  			$("#"+ tmp).attr("onclick", "return false;")
+	  			$("label[for="+tmp+"]").addClass("reserved")
+	  		}	
+	  	})
+  	})
   	</script>
 </head>
 <body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        ${msg}
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
 <div class="container-xxl bg-white p-0">
 	<jsp:include page="/include/topMenu.jsp" />
 	<!-- Page Header End -->
@@ -175,8 +202,9 @@
 				    	<div class="row g-3">
 				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm">
 				          		<div class="form-container">
+				          			<input type="hidden" name="redate" />
 				          			<!-- 로그인한 유저 아이디로 바꾸기 -->
-				          			<input type="hidden" name="memberId" value="user">
+				          			<input type="hidden" name="memberId" value="user" />
 					            	<div class="form-label" >예약 가능 시간</div>
 					            	
 					            		<input type="radio" id="am10" name="time" value="10:00" class="radio-time" />

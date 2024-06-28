@@ -13,7 +13,8 @@ public class ReserveFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ReservationVO reserve = new ReservationVO();
-		reserve.setReserveDate(request.getParameter("time"));
+		String date = request.getParameter("redate") + request.getParameter("time");
+		reserve.setReserveDate(date);
 		reserve.setDetail(request.getParameter("detail"));
 		reserve.setMemberId(request.getParameter("memberId"));
 		

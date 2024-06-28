@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisConfig {
 	private SqlSession session;
-	public MyBatisConfig() {
+	protected MyBatisConfig() {
 		try {
 			String resource = "/bin/mybatis-config.xml";
 			
@@ -21,7 +21,7 @@ public class MyBatisConfig {
 		}
 	}
 	
-	public SqlSession getInstance() {
+	protected SqlSession getInstance() {
 		return session;
 	}
 }

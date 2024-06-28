@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ClassDAO">
+  	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
+  	<resultMap type="classVO" id="classMap">
+  		<result column="teacher_id" property="teacherId" />
+  		<result column="dog_no" property="dogNo" />
+  		<result column="subscription_no" property="subscriptionNo" />
+  		<result column="class_date" property="classDate" />
+  		<result column="reg_date" property="regDate" />
+  	</resultMap>
+  	
+  	<sql id="selectClass">
+  		select *
+  		  from pass
+  	</sql>
+  	
+  	<select id="selectAll" resultMap="classMap">
+  		<include refid="selectClass" />
+  		ORDER BY CLASS_DATE DESC
+  	</select>
+  	
+  	<select id="selectTeacherClass" parameterType="String" resultType="HashMap">
+  		SELECT teacher_id as teacherId, count(*) as cnt
+ 		  FROM CLASS 
+		 WHERE TO_CHAR(CLASS_DATE, 'yyyymmdd') = #{date}
+         GROUP BY TEACHER_ID;
+  	</select> 	 
+  	 
+  	  	
+  	<!-- 수업 내역 삽입 -->
+  	<insert id="insert" parameterType="classVO">
+  		INSERT INTO class(NO, TEACHER_ID, DOG_NO, SUBSCRIPTION_NO, CLASS_DATE)
+		VALUES(SEQ_CLASS_NO.NEXTVAL, #{teacherId}, #{dogNo}, #{subscriptionNo}, TO_DATE(#{classDate},'YYYYMMDD'))
+  	</insert>
+</mapper>

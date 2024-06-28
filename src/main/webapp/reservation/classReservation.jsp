@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="../resources/img/favicon.ico" rel="icon">
+    <link href="/dangdangdang/resources/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,23 +22,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../resources/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../resources/css/style.css" rel="stylesheet">
-    
-
+    <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">	
+	<link rel="stylesheet" href="/dangdangdangs/resources/css/calendar_style.css">
 	
-	<link rel="stylesheet" href="../resources/css/calendar_style.css">
+	<script src="/dangdangdang/resources/js/jquery.min.js"></script>
+  	<script src="/dangdangdang/resources/js/popper.js"></script>
+  	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
+  	<script src="/dangdangdang/resources/js/calendar_main.js"></script>
 
 </head>
 <body>
 <div class="container-xxl bg-white p-0">
-	<jsp:include page="../include/topMenu.jsp" />
+	<jsp:include page="/include/topMenu.jsp" />
 	<!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
@@ -103,34 +106,47 @@
 			              </tbody> 
 				          </table>
 				        </div> 
-				        <button class="button" id="add-button">날짜 선택</button>
+				        
 				      </div>
 				    </div>
 				    <div class="events-container">
-				    </div>
-				    <div class="dialog" id="dialog">
-				        <h2 class="dialog-header"> Add New Event </h2>
-				        <form class="form" id="form">
-				          <div class="form-container" align="center">
-				            <label class="form-label" id="valueFromMyButton" for="name">Event name</label>
-				            <input class="input" type="text" id="name" maxlength="36">
-				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
-				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7">
-				            <input type="button" value="Cancel" class="button" id="cancel-button">
-				            <input type="button" value="OK" class="button button-white" id="ok-button">
-				          </div>
-				        </form>
-				      </div>
+				    	<div>
+				    		<form action="/dangdangdang/classForm.do" method="post" id="classForm">
+				    		<input type="hidden" name="memberId" value="${member.id}">
+				    		<input type="hidden" name="date">
+				    			<div class="form-label">강아지 선택</div>
+				    				<%-- 강아지 목록 있으면 강아지 목록, 없으면 강아지 등록 --%>
+				    				<c:if test="${not empty dogList }">
+					    				<c:forEach items="${ dogList }" var="dog">
+					    					<input type="radio" id="${dog.name}" name="dogNo" value="${dog.no}" class="radioDog" />
+											<label for="${dog.name}">${dog.name}</label>
+					    				</c:forEach>
+				    				</c:if>
+				    				<c:if test="${empty dogList}">
+				    					<button>강아지 등록하기</button>
+				    				</c:if>
+				    			<div class="form-label">선생님 선택</div>
+				    				<%-- 선생님 이름 조회 후 목록 만들고 가능 여부 설정 --%>
+					    			<c:forEach items="${ teacherList }" var="teacher">
+					    				<input type="radio" id="${teacher.id}" name="teacherId" value="${teacher.id}" class="radioTeacher" />
+										<label for="${teacher.id}">${teacher.name}</label>
+					    			</c:forEach>				    				
+				    			<div class="form-label">이용권 선택</div>
+				    				<%-- 이용권 날짜, 남은 횟수 조회 후 가능만 radio로 선택 --%>
+					    			<c:forEach items="${ subList }" var="sub">
+					    				<input type="radio" id="sub${sub.no}" name="subNo" value="${sub.no}" class="radioSub" />
+										<label for="sub${sub.no}">이용권 NO: ${sub.no} 남은 횟수: ${sub.remainClasses} 만료일: ${sub.endDate}</label>
+					    			</c:forEach>				    				
+				    		</form>
+				    	</div>
+				    </div>				    
 				  </div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<script src="../resources/js/jquery.min.js"></script>
-  <script src="../resources/js/popper.js"></script>
-  <script src="../resources/js/bootstrap.min.js"></script>
-  <script src="../resources/js/calendar_main.js"></script>
-	<jsp:include page="../include/footer.jsp" />
+
+	<jsp:include page="/include/footer.jsp" />
 	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 </body>

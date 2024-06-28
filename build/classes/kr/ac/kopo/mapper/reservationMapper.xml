@@ -44,7 +44,7 @@
 		VALUES (
 				SEQ_RESERVATION_NO.nextval
 			  , #{memberId} 
-			  , TO_DATE(TO_CHAR(SYSDATE, 'yyyymmdd') || #{reserveDate}, 'yyyymmddhh24:mi')
+			  , TO_DATE(#{reserveDate}, 'yyyymmddhh24:mi')
 		      , #{detail}
 		)
   	</insert>

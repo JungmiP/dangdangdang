@@ -13,11 +13,33 @@
   		<result column="remain_classes" property="remainClasses" />
   	</resultMap>
   	
-  	<sql id="selectPayment">
-  		select no, member_id, pass_no, amount, pay_method, to_char(pay_date, 'yyyy-mm-dd') pay_date
-  		  from payment
+  	<sql id="selectSubscription">
+  		select no, payment_no, member_id, pass_no, start_date, end_date, remain_classes
+  		  from subscription
   	</sql>
+ 	
+ 	<!-- 유효한 이용권 조회  -->
+ 	<select id="selectValidSub" parameterType="String" resultMap="subscriptionMap">
+ 		<include refid="selectSubscription" />
+ 		WHERE MEMBER_ID = #{memberId}
+ 		  AND END_DATE >= SYSDATE
+ 		  AND REMAIN_CLASSES > 0
+ 		ORDER BY NO
+ 	</select>
  
+ 	<!-- 모든 이용권 조회  -->
+ 	<select id="selectAllById" parameterType="String" resultMap="subscriptionMap">
+ 		<include refid="selectSubscription" />
+ 		 where member_id = #{memberId}
+ 	</select>
+ 
+ 	<!-- 이용권 남은 수량 수정 -->
+ 	<update id="updateRemainClasses" parameterType="int">
+ 		UPDATE SUBSCRIPTION 
+   		   SET REMAIN_CLASSES = (REMAIN_CLASSES - 1)
+         WHERE NO = #{no}
+ 	</update>
+ 	
   	<!-- 이용권 내역 삽입 -->
   	<insert id="insert" parameterType="subscriptionVO">
   		INSERT INTO SUBSCRIPTION (NO, PAYMENT_NO, MEMBER_ID , PASS_NO, START_DATE, END_DATE, REMAIN_CLASSES)

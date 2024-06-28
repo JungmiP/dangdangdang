@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TeacherDAO">
+  	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
+  	<resultMap type="teacherVO" id="teacherMap">
+  		<result column="birth_date" property="birthDate" />
+  		<result column="reg_date" property="regDate" />
+  	</resultMap>
+  	
+  	<sql id="selectTeacher">
+  		select id, name, gender, phone, to_char(birth_date, 'yyyymmdd') as birth_date, to_char(reg_date, 'yyyymmdd') as reg_date
+  		  from teacher
+  	</sql>
+  	
+  	<!-- 선생님 한 명 조회 -->
+  	<select id="selectTeacherById" parameterType="String" resultMap="teacherMap">
+  		<include refid="selectTeacher" />
+  		where id = #{id}
+  	</select>
+  	
+  	<!-- 전체 선생님 목록 조회 -->
+  	<select id="selectAll" resultMap="teacherMap">
+  		<include refid="selectTeacher" />
+  		 order by reg_date
+  	</select>
+  	  	
+  	<!-- 선생님 추가 -->
+  	<insert id="insert" parameterType="teacherVO">
+  		INSERT INTO TEACHER (id, NAME, GENDER, PHONE, BIRTH_DATE)
+		VALUES (#{id}, #{name}, #{gender}, #{phone}, #{bithDate})
+  	</insert>
+</mapper>
