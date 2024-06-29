@@ -88,7 +88,11 @@
   	<script src="/dangdangdang/resources/js/visitreserve.js"></script>
   	<script>
   	$(document).ready(function(){
-	  	<c:if test="${not empty msg}">
+  		<c:if test="${not empty msg}">
+  			alert("${msg}")
+  			<c:remove var="msg" scope="request" />
+  		</c:if>
+	  	/*<c:if test="${not empty msg}">
 	  	// alert 대신 모달창 띄우기
 	  		$("#exampleModal").modal("show");
 	  		<c:remove var="msg" scope="request" />
@@ -96,6 +100,17 @@
 	  	$("#closeModal").click(function() {
 			$("#exampleModal").modal("hide")
 		});
+	  	
+	  	*/
+	  	let now = new Date()
+	  	let hour = String(now.getHours()).padStart(2,"0") + ":00"
+		$(".radio-time").each(function(){
+			if($(this).val() < hour){
+				$(".radio-time").attr("onclick", "return false;")
+				$("input[name='time'] + label").addClass("reserved")
+			}
+		})
+	  	
 	  	
 	  	let reserveDates = [];
 	  	<c:forEach items="${reserveList}" var="reserve" varStatus="status">
@@ -113,7 +128,12 @@
   	</script>
 </head>
 <body>
-<!-- Modal -->
+
+<div class="container-xxl bg-white p-0">
+	<jsp:include page="/include/topMenu.jsp" />
+
+<!-- Modal 
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -126,10 +146,8 @@
     </div>
   </div>
 </div>
-<!-- Modal end -->
-<div class="container-xxl bg-white p-0">
-	<jsp:include page="/include/topMenu.jsp" />
-	<!-- Page Header End -->
+Modal end -->
+<!-- Page Header Start -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
                 <h1 class="display-2 text-white animated slideInDown mb-4">Reservation</h1>
@@ -204,10 +222,10 @@
 				          		<div class="form-container">
 				          			<input type="hidden" name="redate" />
 				          			<!-- 로그인한 유저 아이디로 바꾸기 -->
-				          			<input type="hidden" name="memberId" value="user" />
+				          			<input type="hidden" name="memberId" value="${member.id}" />
 					            	<div class="form-label" >예약 가능 시간</div>
 					            	
-					            		<input type="radio" id="am10" name="time" value="10:00" class="radio-time" />
+					            		<input type="radio" id="am10" name="time" value="10:00" class="radio-time" required/>
 										<label for="am10">AM 10:00</label>
 						            	<input type="radio" id="am11" name="time" value="11:00" class="radio-time" />
 										<label for="am11">AM 11:00</label>

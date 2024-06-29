@@ -24,7 +24,7 @@
  		WHERE MEMBER_ID = #{memberId}
  		  AND END_DATE >= SYSDATE
  		  AND REMAIN_CLASSES > 0
- 		ORDER BY NO
+ 		ORDER BY END_DATE
  	</select>
  
  	<!-- 모든 이용권 조회  -->

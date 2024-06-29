@@ -13,7 +13,7 @@
   	</resultMap>
   	
   	<sql id="selectClass">
-  		select *
+  		select 
   		  from pass
   	</sql>
   	
@@ -22,10 +22,10 @@
   		ORDER BY CLASS_DATE DESC
   	</select>
   	
-  	<select id="selectTeacherClass" parameterType="String" resultType="HashMap">
+  	<select id="selectCntPerTeacher" parameterType="String" resultType="HashMap">
   		SELECT teacher_id as teacherId, count(*) as cnt
  		  FROM CLASS 
-		 WHERE TO_CHAR(CLASS_DATE, 'yyyymmdd') = #{date}
+		 WHERE CLASS_DATE = #{date}
          GROUP BY TEACHER_ID;
   	</select> 	 
   	 

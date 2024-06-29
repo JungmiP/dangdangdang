@@ -16,7 +16,10 @@
 		<typeAlias type="kr.ac.kopo.vo.PaymentVO" alias="paymentVO" />
 		<typeAlias type="kr.ac.kopo.vo.SubscriptionVO" alias="subscriptionVO" />
 		<typeAlias type="kr.ac.kopo.vo.PassVO" alias="passVO" />
+		<typeAlias type="kr.ac.kopo.vo.TeacherVO" alias="teacherVO" />
 		<typeAlias type="kr.ac.kopo.vo.ReservationVO" alias="reservationVO" />
+		<typeAlias type="kr.ac.kopo.vo.DogVO" alias="dogVO" />
+		<typeAlias type="kr.ac.kopo.vo.ClassVO" alias="classVO" />
 	</typeAliases>
 
   <environments default="development">
@@ -37,9 +40,11 @@
     </environment>
   </environments>
   <mappers>
+    <mapper resource="/kr/ac/kopo/mapper/classMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/passMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/paymentMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/subscriptionMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/reservationMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/teacherMapper.xml" />
   </mappers>
 </configuration>

@@ -30,12 +30,12 @@
 
     <!-- Template Stylesheet -->
     <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">	
-	<link rel="stylesheet" href="/dangdangdangs/resources/css/calendar_style.css">
+	<link rel="stylesheet" href="/dangdangdang/resources/css/calendar_style.css">
 	
 	<script src="/dangdangdang/resources/js/jquery.min.js"></script>
   	<script src="/dangdangdang/resources/js/popper.js"></script>
   	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
-  	<script src="/dangdangdang/resources/js/calendar_main.js"></script>
+  	<script src="/dangdangdang/resources/js/classReserve.js"></script>
 
 </head>
 <body>
@@ -110,6 +110,9 @@
 				      </div>
 				    </div>
 				    <div class="events-container">
+				    	<div class="event-card">
+				    	
+				    	</div>
 				    	<div>
 				    		<form action="/dangdangdang/classForm.do" method="post" id="classForm">
 				    		<input type="hidden" name="memberId" value="${member.id}">
@@ -118,7 +121,7 @@
 				    				<%-- 강아지 목록 있으면 강아지 목록, 없으면 강아지 등록 --%>
 				    				<c:if test="${not empty dogList }">
 					    				<c:forEach items="${ dogList }" var="dog">
-					    					<input type="radio" id="${dog.name}" name="dogNo" value="${dog.no}" class="radioDog" />
+					    					<input type="radio" id="${dog.name}" name="dogNo" value="${dog.no}" class="radioDog" required/>
 											<label for="${dog.name}">${dog.name}</label>
 					    				</c:forEach>
 				    				</c:if>
@@ -128,15 +131,16 @@
 				    			<div class="form-label">선생님 선택</div>
 				    				<%-- 선생님 이름 조회 후 목록 만들고 가능 여부 설정 --%>
 					    			<c:forEach items="${ teacherList }" var="teacher">
-					    				<input type="radio" id="${teacher.id}" name="teacherId" value="${teacher.id}" class="radioTeacher" />
+					    				<input type="radio" id="${teacher.id}" name="teacherId" value="${teacher.id}" class="radioTeacher" required />
 										<label for="${teacher.id}">${teacher.name}</label>
 					    			</c:forEach>				    				
 				    			<div class="form-label">이용권 선택</div>
 				    				<%-- 이용권 날짜, 남은 횟수 조회 후 가능만 radio로 선택 --%>
 					    			<c:forEach items="${ subList }" var="sub">
-					    				<input type="radio" id="sub${sub.no}" name="subNo" value="${sub.no}" class="radioSub" />
+					    				<input type="radio" id="sub${sub.no}" name="subNo" value="${sub.no}" class="radioSub" required/>
 										<label for="sub${sub.no}">이용권 NO: ${sub.no} 남은 횟수: ${sub.remainClasses} 만료일: ${sub.endDate}</label>
 					    			</c:forEach>				    				
+				    		<button class="button" type="submit" id="submitBtn" >수업 예약</button>
 				    		</form>
 				    	</div>
 				    </div>				    
