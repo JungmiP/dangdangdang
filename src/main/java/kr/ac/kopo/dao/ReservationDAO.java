@@ -28,6 +28,12 @@ public class ReservationDAO {
 		return list;
 	}
 	
+	public int delete(int no) {
+		int result = session.delete("dao.ReservationDAO.delete", no);
+		session.commit();
+		return result;
+	}
+	
 	public void insert(ReservationVO reserve) {
 		session.insert("dao.ReservationDAO.insert", reserve);
 		session.commit();

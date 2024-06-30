@@ -37,6 +37,11 @@
   		<include refid="selectReservation" />
   		 order by reserve_date desc 	
   	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		DELETE FROM RESERVATION
+  		 WHRER NO = #{no} 
+  	</delete>
   	   	   	  	
   	<!-- 예약 삽입 -->
   	<insert id="insert" parameterType="reservationVO">

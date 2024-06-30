@@ -157,6 +157,9 @@ function checkReserve(tarDate){
 		},
 		function(response){
 			console.log(response)
+			$(response).each(function(){
+				
+			})
 		})
 }
 

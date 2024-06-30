@@ -31,5 +31,10 @@ public class ClassDAO {
 		session.insert("dao.ClassDAO.insert", classVo);
 		session.commit();
 	}
+
+	public void delete(int no) {
+		session.delete("dao.ClassDAO.delete", no);
+		session.commit();		
+	}
 	
 }

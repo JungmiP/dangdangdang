@@ -25,5 +25,21 @@ public class SubscriptionDAO {
 		return list;
 	}
 	
-	
+	public int delete(int no) {
+		int result = session.delete("dao.SubscriptionDAO.delete", no);
+		session.commit();
+		return result;
+	}
+
+	public void subtractClass(int no) {
+		session.update("dao.SubscriptionDAO.subtractRemainClasses", no);
+		session.commit();
+		
+	}
+
+	public void addClass(int no) {
+		session.update("dao.SubscriptionDAO.addRemainClasses", no);
+		session.commit();
+		
+	}
 }

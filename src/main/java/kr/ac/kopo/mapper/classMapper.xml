@@ -13,8 +13,8 @@
   	</resultMap>
   	
   	<sql id="selectClass">
-  		select 
-  		  from pass
+  		SELECT NO, TEACHER_ID, DOG_NO, SUBSCRIPTION_NO, CLASS_DATE, STATUS, ATTENDANCE, REG_DATE
+  		  FROM CLASS
   	</sql>
   	
   	<select id="selectAll" resultMap="classMap">
@@ -23,12 +23,16 @@
   	</select>
   	
   	<select id="selectCntPerTeacher" parameterType="String" resultType="HashMap">
-  		SELECT teacher_id as teacherId, count(*) as cnt
+  		SELECT TEACHER_ID as teacherId, COUNT(*) as cnt
  		  FROM CLASS 
-		 WHERE CLASS_DATE = #{date}
-         GROUP BY TEACHER_ID;
+		 WHERE CLASS_DATE = TO_DATE(#{date}, 'YYYYMMDD')
+         GROUP BY TEACHER_ID
   	</select> 	 
   	 
+  	 <delete id="delete" parameterType="int">
+  	 	DELETE FROM CLASS
+  	 	WHERE NO = #{no}
+  	 </delete>
   	  	
   	<!-- 수업 내역 삽입 -->
   	<insert id="insert" parameterType="classVO">

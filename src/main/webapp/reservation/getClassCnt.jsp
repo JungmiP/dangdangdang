@@ -8,7 +8,8 @@
 	String date = request.getParameter("date");
 	ClassService service = new ClassService();
 	List<Map<String, Object>> list = service.searchCntPerTeacher(date);
-	//request.setAttribute("tmp", list.get(0).get("teacherId"));
 	System.out.print(list.get(0).get("cnt"));
+	//Gson써서 넘기기
+	//request.setAttribute("tmp", list.get(0).get("teacherId"));
 
 %>

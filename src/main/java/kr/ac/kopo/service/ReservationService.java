@@ -6,9 +6,13 @@ import kr.ac.kopo.dao.ReservationDAO;
 import kr.ac.kopo.vo.ReservationVO;
 
 public class ReservationService {
-	private ReservationDAO reserveDao = new ReservationDAO();
 	
+	private ReservationDAO reserveDao;
 	
+	public ReservationService() {
+		reserveDao = new ReservationDAO();
+	}
+
 	
 	public List<ReservationVO> searchByToday(){
 		List<ReservationVO> list = reserveDao.selectByReserveDate();
@@ -18,6 +22,11 @@ public class ReservationService {
 	public List<ReservationVO> searchByReserveDate(String reserveDate){
 		List<ReservationVO> list = reserveDao.selectByReserveDate(reserveDate);
 		return list;
+	}
+	
+	public int removeReserve(int no) {
+		int result = reserveDao.delete(no);
+		return result;
 	}
 	
 	public void createReserve(ReservationVO reserve) {

@@ -34,9 +34,15 @@
  	</select>
  
  	<!-- 이용권 남은 수량 수정 -->
- 	<update id="updateRemainClasses" parameterType="int">
+ 	<update id="subtractRemainClasses" parameterType="int">
  		UPDATE SUBSCRIPTION 
    		   SET REMAIN_CLASSES = (REMAIN_CLASSES - 1)
+         WHERE NO = #{no}
+ 	</update>
+
+ 	<update id="addRemainClasses" parameterType="int">
+ 		UPDATE SUBSCRIPTION 
+   		   SET REMAIN_CLASSES = (REMAIN_CLASSES + 1)
          WHERE NO = #{no}
  	</update>
  	
