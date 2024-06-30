@@ -21,14 +21,25 @@
   		<include refid="selectClass" />
   		ORDER BY CLASS_DATE DESC
   	</select>
+
+  	<select id="selectByDogNo" resultMap="classMap">
+  		<include refid="selectClass" />
+  		WHERE DOG_NO = #{dogNo}
+  		ORDER BY CLASS_DATE DESC
+  	</select>
   	
-  	<select id="selectCntPerTeacher" parameterType="String" resultType="HashMap">
+  	<select id="selectCntPerTeacher" parameterType="int" resultType="HashMap">
   		SELECT TEACHER_ID as teacherId, COUNT(*) as cnt
  		  FROM CLASS 
 		 WHERE CLASS_DATE = TO_DATE(#{date}, 'YYYYMMDD')
          GROUP BY TEACHER_ID
   	</select> 	 
   	 
+  	 <update id="updateStatus" parameterType="classVO">
+  	 	UPDATE CLASS 
+  	 	SET STATUS = #{status}
+  	 	WHERE NO = #{no} 
+  	 </update>
   	 <delete id="delete" parameterType="int">
   	 	DELETE FROM CLASS
   	 	WHERE NO = #{no}

@@ -1,3 +1,5 @@
+<%@page import="com.google.gson.GsonBuilder"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.ac.kopo.service.ClassService"%>
@@ -6,10 +8,12 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String date = request.getParameter("date");
+	
 	ClassService service = new ClassService();
 	List<Map<String, Object>> list = service.searchCntPerTeacher(date);
-	System.out.print(list.get(0).get("cnt"));
 	//Gson써서 넘기기
-	//request.setAttribute("tmp", list.get(0).get("teacherId"));
-
+	Gson gson = new GsonBuilder().create();
+	String json = gson.toJson(list);
+	request.setAttribute("tmp", json);
 %>
+${tmp}

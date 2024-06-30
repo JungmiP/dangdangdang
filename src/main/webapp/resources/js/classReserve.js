@@ -14,7 +14,10 @@ $(document).ready(function(){
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
-    checkReserve('20240629')
+    let now = date.getFullYear() + String(date.getMonth()+1).padStart(2, "0") + String(today).padStart(2, "0")
+    $(classForm.date).val(now)
+    
+    checkReserve(now)
     show_events(date.getMonth() + 1, today);
 });
 
@@ -32,7 +35,7 @@ function init_calendar(date) {
     var first_day = date.getDay();
     // 35+firstDay is the number of date elements to be added to the dates table
     // 35 is from (7 days in a week) * (up to 5 rows of dates in a month)
-    for(var i=0; i<35+first_day; i++) {
+    for(var i=0; i < 35 + first_day; i++) {
         // Since some of the elements will be blank, 
         // need to calculate actual date from index
         var day = i-first_day+1;
@@ -51,10 +54,10 @@ function init_calendar(date) {
             
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
-                show_events(months[month], day);
+                show_events(month + 1, day);
             }
             // Set onClick handler for clicking a date
-            curr_date.click({ month: months[month], day:day}, date_click);
+            curr_date.click({ year: year, month: month + 1, day:day}, date_click);
             row.append(curr_date);
         }
     }
@@ -75,7 +78,10 @@ function date_click(event) {
     $(".events-container").show(250);
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
-    show_events(event.data.events, event.data.month, event.data.day);
+    show_events(event.data.month, event.data.day);
+    let now = event.data.year + String(event.data.month).padStart(2, "0") + String(event.data.day).padStart(2, "0")
+    checkReserve(now)
+    $(classForm.date).val(now)
 };
 
 // Event handler for when a month is clicked
@@ -134,33 +140,40 @@ function check_events(day, month, year) {
 // 해당 날짜에 예약이 다 찬 선생님은 선택 불가로 만드는 함수
 function checkReserve(tarDate){
 	//ajax로 예약 수 확인
-	/*
+	
 	$.ajax({
-				url: 'getClassCnt.jsp',
-				type: 'get',
+				url: '/dangdangdang/reservation/getClassCnt.jsp',
+				type: 'post',
 				
 				data: {
 					date: tarDate
 				},
 				success : function(response){
-					console.log(response)
+					let list = JSON.parse(response)
+					$(list).each(function(){
+						// 예약 횟수가 10 이상이면 클릭 금지
+						if(this.CNT >= 10){
+							$("#"+this.TEACHERID).attr("onclick", "return false;")
+							//css 변경도 추가할 것
+						}
+					})					
 				},
 				error : function(){
 					alert('실패')
 				}
 	})
-	*/
+	
 
-	$.post('/dangdangdang/reservation/getClassCnt.jsp', 
-		{
-			date: tarDate,
-		},
-		function(response){
-			console.log(response)
-			$(response).each(function(){
-				
-			})
-		})
+//	$.post('/dangdangdang/reservation/getClassCnt.jsp', 
+//		{
+//			date: tarDate
+//		},
+//		function(response){
+//			console.log(response)
+//			$(response).each(function(){
+//				
+//			})
+//		})
 }
 
 const months = [ 

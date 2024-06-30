@@ -28,6 +28,11 @@ public class ReservationDAO {
 		return list;
 	}
 	
+	public List<ReservationVO> selectByMemberId(String memberId){
+		List<ReservationVO> list = session.selectList("dao.ReservationDAO.selectByMemberId", memberId);
+		return list;
+	}
+	
 	public int delete(int no) {
 		int result = session.delete("dao.ReservationDAO.delete", no);
 		session.commit();

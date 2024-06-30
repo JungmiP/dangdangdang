@@ -32,4 +32,10 @@ public class ReservationService {
 	public void createReserve(ReservationVO reserve) {
 		reserveDao.insert(reserve);
 	}
+
+
+	public List<ReservationVO> searchByMemberId(String memberId) {
+		List<ReservationVO> list = reserveDao.selectByMemberId(memberId);
+		return list;
+	}
 }

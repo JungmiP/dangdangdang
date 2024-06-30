@@ -32,11 +32,26 @@
   		 </if>
   	</select>
   	
+  	<!-- 멤버 id로 조회 -->
+  	<select id="selectByMemberId" parameterType="String" resultMap="reservationMap">
+  		<include refid="selectReservation" /> 
+  		WHERE MEMBER_ID = #{memberId}
+  		ORDER BY RESERVE_DATE DESC
+  	</select>
+  	
+  	
   	<!-- 전체 예약 조회 -->
   	<select id="selectAll" resultMap="reservationMap">
   		<include refid="selectReservation" />
   		 order by reserve_date desc 	
   	</select>
+  	
+  	
+  	<update id="updateStatus" parameterType="reservationVO">
+  		UPDATE RESERVATION
+  		SET STATUS = #{status}
+  		WHERE NO = #{no}
+  	</update>
   	
   	<delete id="delete" parameterType="int">
   		DELETE FROM RESERVATION

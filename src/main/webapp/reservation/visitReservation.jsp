@@ -248,6 +248,29 @@ Modal end -->
 				  </div>
 				</div>
 			</div>
+			<c:if test="${not empty myReserveList}">
+			<div class="text-center ">
+			<h3>상담 예약 내역</h3>
+			<table>
+				<tr>
+					<th>번호</th>
+					<th>방문일시</th>
+					<th>예약 상태</th>
+					<th>예약일</th>
+					<th><th>
+				</tr>
+				<c:forEach items="${myReserveList}" var="reserve">
+					<tr>
+						<td>${reserve.no}</td>
+						<td>${reserve.reserveDate}</td>
+						<td>${reserve.status}</td>
+						<td>${reserve.regDate}</td>
+						<td><button>취소</button></td>
+					</tr>
+				</c:forEach>
+			</table>
+			</div>
+			</c:if>
 		</div>
 	</section>
 	

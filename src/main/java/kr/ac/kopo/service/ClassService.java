@@ -28,7 +28,8 @@ public class ClassService {
 	}
 	
 	public List<Map<String, Object>> searchCntPerTeacher(String date){
-		List<Map<String, Object>> list = classDao.selectCntPerTeacher(date);
+		int param = Integer.parseInt(date);
+		List<Map<String, Object>> list = classDao.selectCntPerTeacher(param);
 		return list;
 	}
 	

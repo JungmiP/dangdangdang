@@ -21,7 +21,7 @@ public class ClassDAO {
 	}
 	
 	// 해당 날짜에 선생님 당 수업 수 조회
-	public List<Map<String, Object>> selectCntPerTeacher(String date){
+	public List<Map<String, Object>> selectCntPerTeacher(int date){
 		List<Map<String, Object>> list = session.selectList("dao.ClassDAO.selectCntPerTeacher", date);
 		return list;
 	} 
