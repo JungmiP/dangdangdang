@@ -147,6 +147,28 @@
 				  </div>
 				</div>
 			</div>
+			<c:if test="${not empty myClassList}"></c:if>
+			<div>
+				<h3>수업 예약 내역</h3>
+				<table>
+					<tr>
+						<th>번호</th>
+						<th>수업일</th>
+						<th>담당 선생님</th>
+						<th>예약일</th>
+						<th></th>
+					</tr>
+					<c:forEach items="${ myClassList }" var="class" varStatus="stat">
+						<tr>
+							<td>${stat.count}</td>
+							<td>${class.classDate}</td>
+							<td>${class.teacherId}</td>
+							<td>${class.regDate}</td>
+							<td><button>취소</button></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>			
 		</div>
 	</section>
 
