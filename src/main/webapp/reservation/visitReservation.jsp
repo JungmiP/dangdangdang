@@ -85,7 +85,7 @@
     <script src="/dangdangdang/resources/lib/waypoints/waypoints.min.js"></script>
     <script src="/dangdangdang/resources/lib/owlcarousel/owl.carousel.min.js"></script>  	
   	<script src="/dangdangdang/resources/js/main.js"></script>
-  	<script src="/dangdangdang/resources/js/visitreserve.js"></script>
+  	<script src="/dangdangdang/resources/js/visitReserve.js"></script>
   	<script>
   	$(document).ready(function(){
   		<c:if test="${not empty msg}">
@@ -251,23 +251,27 @@ Modal end -->
 			<c:if test="${not empty myReserveList}">
 			<div class="text-center ">
 			<h3>상담 예약 내역</h3>
-			<table>
+			<table class="table table-bordered">
+				<thead class="thead-dark">
 				<tr>
 					<th>번호</th>
 					<th>방문일시</th>
 					<th>예약 상태</th>
 					<th>예약일</th>
-					<th><th>
+					<th></th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach items="${myReserveList}" var="reserve">
 					<tr>
 						<td>${reserve.no}</td>
 						<td>${reserve.reserveDate}</td>
-						<td>${reserve.status}</td>
+						<td>${(reserve.status=='A')?"확정":(reserve.status=='C')?"취소":"만료"}</td>
 						<td>${reserve.regDate}</td>
-						<td><button>취소</button></td>
+						<td><button class="btn btn-dark">취소</button></td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 			</div>
 			</c:if>

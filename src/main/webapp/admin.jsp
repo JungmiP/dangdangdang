@@ -42,8 +42,9 @@
             </div>
         </div>
         <!-- Spinner End -->
-        
-			<jsp:include page="./include/topMenu.jsp" /> 
+       		
+			<jsp:include page="./include/adminMenu.jsp" />
+			 
 		      
         <!-- Carousel Start -->
         <div class="container-fluid p-0 mb-5">

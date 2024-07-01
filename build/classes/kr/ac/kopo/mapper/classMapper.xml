@@ -22,12 +22,25 @@
   		ORDER BY CLASS_DATE DESC
   	</select>
 
-  	<select id="selectByDogNo" resultMap="classMap">
+  	<select id="selectByNo" parameterType="int" resultMap="classMap">
+  		<include refid="selectClass" />
+  		WHERE NO = #{no}
+  	</select>
+
+  	<select id="selectByDogNo" parameterType="int" resultMap="classMap">
   		<include refid="selectClass" />
   		WHERE DOG_NO = #{dogNo}
   		ORDER BY CLASS_DATE DESC
   	</select>
+
+  	<select id="selectByDate" parameterType="classVO" resultMap="classMap">
+  		<include refid="selectClass" />
+  		WHERE CLASS_DATE = TO_DATE(#{classDate}, 'YYYYMMDD')
+  		  AND TEACHER_ID = #{teacherId}
+  		ORDER BY REG_DATE DESC
+  	</select>
   	
+
   	<select id="selectCntPerTeacher" parameterType="int" resultType="HashMap">
   		SELECT TEACHER_ID as teacherId, COUNT(*) as cnt
  		  FROM CLASS 
@@ -40,6 +53,13 @@
   	 	SET STATUS = #{status}
   	 	WHERE NO = #{no} 
   	 </update>
+  	 
+  	 <update id="updateAttendance" parameterType="int">
+  	 	UPDATE CLASS 
+  	 	SET attendance = 'P'
+  	 	WHERE NO = #{no} 
+  	 </update>
+  	 
   	 <delete id="delete" parameterType="int">
   	 	DELETE FROM CLASS
   	 	WHERE NO = #{no}

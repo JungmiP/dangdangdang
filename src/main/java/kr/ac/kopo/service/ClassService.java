@@ -33,10 +33,27 @@ public class ClassService {
 		return list;
 	}
 	
+	public List<ClassVO> searchClassListByDate(ClassVO classVo){
+		List<ClassVO> list = classDao.selectByDate(classVo);
+		return list;
+	}
+	
+	// class 출석 체크 변경
+	public void changeAttendance(int classNo) {
+		classDao.updateAttendance(classNo);
+	}
+	
+	
 	// class 예약 삭제
 	public void removeClass(ClassVO classVo) {
 		// 이용권 하나 회복
 		subscriptionDao.addClass(classVo.getSubscriptionNo());
 		classDao.delete(classVo.getNo());
+	}
+
+	public ClassVO searchOne(int classNo) {
+		ClassVO classVo = classDao.selectByNo(classNo);
+		return classVo;
+		
 	}
 }

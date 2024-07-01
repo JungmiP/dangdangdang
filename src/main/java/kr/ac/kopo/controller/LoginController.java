@@ -18,6 +18,9 @@ public class LoginController implements Controller{
 		member.setId("user");
 		member.setName("사용자");
 		request.getSession().setAttribute("member", member);
+		if(member.getAdmin() == 'A') {
+			return "/admin.jsp";
+		}
 		
 		List<DogVO> dogList = new ArrayList<>();
 		
@@ -36,7 +39,7 @@ public class LoginController implements Controller{
 		dog2.setBirthDate("2019-05-08");
 		dog2.setBreedCode(1);
 		dogList.add(dog2);
-	
+		
 		request.getSession().setAttribute("dogList", dogList);
 		return "/index.jsp";
 	}

@@ -155,15 +155,17 @@
 						<th>번호</th>
 						<th>수업일</th>
 						<th>담당 선생님</th>
+						<th>예약 상태</th>
 						<th>예약일</th>
 						<th></th>
 					</tr>
-					<c:forEach items="${ myClassList }" var="class" varStatus="stat">
+					<c:forEach items="${ myClassList }" var="classVo" varStatus="stat">
 						<tr>
 							<td>${stat.count}</td>
-							<td>${class.classDate}</td>
-							<td>${class.teacherId}</td>
-							<td>${class.regDate}</td>
+							<td>${classVo.classDate}</td>
+							<td>${classVo.teacherId}</td>
+							<td>${(classVo.status == 'A')?"확정":(classVo.status == 'C')?"취소":"만료"}</td>
+							<td>${classVo.regDate}</td>
 							<td><button>취소</button></td>
 						</tr>
 					</c:forEach>

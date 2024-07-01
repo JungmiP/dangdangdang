@@ -162,18 +162,7 @@ function checkReserve(tarDate){
 					alert('실패')
 				}
 	})
-	
 
-//	$.post('/dangdangdang/reservation/getClassCnt.jsp', 
-//		{
-//			date: tarDate
-//		},
-//		function(response){
-//			console.log(response)
-//			$(response).each(function(){
-//				
-//			})
-//		})
 }
 
 const months = [ 

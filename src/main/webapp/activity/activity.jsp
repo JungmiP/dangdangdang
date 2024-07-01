@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="../resources/img/favicon.ico" rel="icon">
+    <link href="/dangdangdang/resources/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,81 +23,91 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../resources/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../resources/css/style.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">
     
-	<link href="../resources/fullcalendar/fullcalendar/packages/core/main.css" rel="stylesheet" />
-    <link href="../resources/fullcalendar/fullcalendar/packages/daygrid/main.css" rel="stylesheet" />
+	<link href="/dangdangdang/resources/fullcalendar/fullcalendar/packages/core/main.css" rel="stylesheet" />
+    <link href="/dangdangdang/resources/fullcalendar/fullcalendar/packages/daygrid/main.css" rel="stylesheet" />
     
+    <script src="/dangdangdang/resources/js/jquery.min.js"></script>
+  	<script src="/dangdangdang/resources/js/popper.js"></script>
+  	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
+    
+
+    <script src='/dangdangdang/resources/fullcalendar/fullcalendar/packages/core/main.js'></script>
+    <script src='/dangdangdang/resources/fullcalendar/fullcalendar/packages/interaction/main.js'></script>
+    <script src='/dangdangdang/resources/fullcalendar/fullcalendar/packages/daygrid/main.js'></script>
 	<script>
       document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-
+	let today = new Date()
+	let now = today.getFullYear()+ "-" + String(today.getMonth() + 1).padStart(2,"0")+ "-" + String(today.getDate()).padStart(2, "0")
+	
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
-      defaultDate: '2020-02-12',
+      defaultDate: now,
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
         {
           title: 'All Day Event',
-          start: '2020-02-01'
+          start: '2024-07-01'
         },
         {
           title: 'Long Event',
-          start: '2020-02-07',
-          end: '2020-02-10'
+          start: '2024-07-07',
+          end: '2024-07-10'
         },
         {
           groupId: 999,
           title: 'Repeating Event',
-          start: '2020-02-09T16:00:00'
+          start: '2024-07-09T16:00:00'
         },
         {
           groupId: 999,
           title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
+          start: '2024-07-16T16:00:00'
         },
         {
           title: 'Conference',
-          start: '2020-02-11',
-          end: '2020-02-13'
+          start: '2024-07-11',
+          end: '2024-07-13'
         },
         {
           title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
+          start: '2024-07-12T10:30:00',
+          end: '2024-07-12T12:30:00'
         },
         {
           title: 'Lunch',
-          start: '2020-02-12T12:00:00'
+          start: '2024-07-12T12:00:00'
         },
         {
           title: 'Meeting',
-          start: '2020-02-12T14:30:00'
+          start: '2024-07-12T14:30:00'
         },
         {
           title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
+          start: '2024-07-12T17:30:00'
         },
         {
           title: 'Dinner',
-          start: '2020-02-12T20:00:00'
+          start: '2024-07-12T20:00:00'
         },
         {
           title: 'Birthday Party',
-          start: '2020-02-13T07:00:00'
+          start: '2024-07-13T07:00:00'
         },
         {
           title: 'Click for Google',
           url: 'http://google.com/',
-          start: '2020-02-28'
+          start: '2024-07-28'
         }
       ]
     });
@@ -135,16 +145,10 @@
   			
 		</div>
 	</section>
-	<script src="../resources/fullcalendar/js/jquery-3.3.1.min.js"></script>
-    <script src="../resources/fullcalendar/js/popper.min.js"></script>
-    <script src="../resources/fullcalendar/js/bootstrap.min.js"></script>
-
-    <script src='../resources/fullcalendar/fullcalendar/packages/core/main.js'></script>
-    <script src='../resources/fullcalendar/fullcalendar/packages/interaction/main.js'></script>
-    <script src='../resources/fullcalendar/fullcalendar/packages/daygrid/main.js'></script>
+	
 
     
-	<jsp:include page="../include/footer.jsp" />
+	<jsp:include page="/include/footer.jsp" />
 	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 </body>

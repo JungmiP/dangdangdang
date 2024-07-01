@@ -2,18 +2,26 @@ package kr.ac.kopo.vo;
 
 public class ActivityVO {
 	private int no;
+	private int dogNo;
 	private String teacherId;
 	private String activityDate;
 	private String content;
 	private String imgOriName;
 	private String imgSaveName;
-	private int imgSize;
+	private long imgSize;
 	private String regDate;
+	
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public int getDogNo() {
+		return dogNo;
+	}
+	public void setDogNo(int dogNo) {
+		this.dogNo = dogNo;
 	}
 	public String getTeacherId() {
 		return teacherId;
@@ -45,10 +53,10 @@ public class ActivityVO {
 	public void setImgSaveName(String imgSaveName) {
 		this.imgSaveName = imgSaveName;
 	}
-	public int getImgSize() {
+	public long getImgSize() {
 		return imgSize;
 	}
-	public void setImgSize(int imgSize) {
+	public void setImgSize(long imgSize) {
 		this.imgSize = imgSize;
 	}
 	public String getRegDate() {
@@ -60,8 +68,10 @@ public class ActivityVO {
 	
 	@Override
 	public String toString() {
-		return "ActivityVO [no=" + no + ", teacherId=" + teacherId + ", activityDate=" + activityDate + ", content="
-				+ content + ", imgOriName=" + imgOriName + ", imgSaveName=" + imgSaveName + ", imgSize=" + imgSize
-				+ ", regDate=" + regDate + "]";
+		return "ActivityVO [no=" + no + ", dogNo=" + dogNo + ", teacherId=" + teacherId + ", activityDate="
+				+ activityDate + ", content=" + content + ", imgOriName=" + imgOriName + ", imgSaveName=" + imgSaveName
+				+ ", imgSize=" + imgSize + ", regDate=" + regDate + "]";
 	}
+	
+	
 }

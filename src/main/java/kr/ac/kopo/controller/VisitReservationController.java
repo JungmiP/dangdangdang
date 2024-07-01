@@ -16,12 +16,17 @@ public class VisitReservationController implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ReservationService service = new ReservationService();
 		List<ReservationVO> reserveList = service.searchByToday();
-		if(reserveList != null)
+		if(reserveList != null) {
 			request.setAttribute("reserveList", reserveList);
+		}
 		MemberVO member = (MemberVO)request.getSession().getAttribute("member");
-		List<ReservationVO> myReserveList = service.searchByMemberId(member.getId());
-		if(myReserveList != null)
-			request.setAttribute("myReserveList", myReserveList);
+		
+		if(member != null) {
+			List<ReservationVO> myReserveList = service.searchByMemberId(member.getId());
+			if(myReserveList != null)
+				request.setAttribute("myReserveList", myReserveList);
+		}
+		
 		
 		return "/reservation/visitReservation.jsp";
 	}

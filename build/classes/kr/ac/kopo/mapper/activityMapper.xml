@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ActivityDAO">
+  	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
+  	<resultMap type="activityVO" id="activityMap">
+  		<result column="dog_no" property="dogNo" />
+  		<result column="teacher_id" property="teacherId" />
+  		<result column="activity_date" property="activityDate" />
+  		<result column="img_ori_name" property="imgOriName" />
+  		<result column="img_save_name" property="imgSaveName" />
+  		<result column="img_size" property="imgSize" />
+  		<result column="reg_date" property="regDate" />
+  	</resultMap>
+  	
+  	<sql id="selectActivity">
+  		select no, dog_no, teacher_id, activity_date, content, img_ori_name, img_save_name, img_size, reg_date
+  		  from activity
+  	</sql>
+  	
+  	
+  	<!-- 활동일지 번호로 조회 -->
+  	<select id="selectByNo" parameterType="int" resultMap="activityMap">
+  		<include refid="selectActivity" />
+  		 where no = #{no}
+  	</select>
+  	<!-- 강아지 번호로 조회 -->
+  	<select id="selectByDogNo" parameterType="int" resultMap="activityMap">
+  		<include refid="selectActivity" />
+  		 where dog_no = #{dogNo}
+  	</select>
+  	
+  	<select id="selectByDate" parameterType="activityVO" resultMap="activityMap">
+  		<include refid="selectActivity" />
+  		 where teacher_id = #{teacherId}
+  		   and activity_date = to_date(#{activityDate}, "yyyymmdd")
+  	</select>
+    
+  	<!-- 전체 활동일지 조회 -->
+  	<select id="selectAll" resultMap="activityMap">
+  		<include refid="selectActivity" />
+  		 order by activity_date 	
+  	</select>
+  	 
+  	   	
+  	<!-- 활동일지 삽입 -->
+  	<insert id="insert" parameterType="activityVO">
+  		INSERT INTO ACTIVITY (NO, DOG_NO, TEACHER_ID, ACTIVITY_DATE, CONTENT, IMG_ORI_NAME, IMG_SAVE_NAME, IMG_SIZE)
+		VALUES (SEQ_ACTIVITY_NO.nextval, #{dogNo}, #{teacherId}, to_date(#{activityDate}, 'yyyy-mm-dd'), #{content}, #{imgOriName}, #{imgSaveName}, #{imgSize})
+  	<selectKey keyProperty="no" resultType="int" order="AFTER">
+  		SELECT SEQ_ACTIVITY_NO.currval FROM dual
+  	</selectKey>
+  	</insert>
+</mapper>

@@ -26,6 +26,13 @@ public class ClassDAO {
 		return list;
 	} 
 	
+	// 날짜별 선생님 별 수업 조회
+	public List<ClassVO> selectByDate(ClassVO classVo){
+		List<ClassVO> list = session.selectList("dao.ClassDAO.selectByDate", classVo);
+		return list;
+	}
+	
+	
 	// 수업 등록
 	public void insert(ClassVO classVo) {
 		session.insert("dao.ClassDAO.insert", classVo);
@@ -35,6 +42,16 @@ public class ClassDAO {
 	public void delete(int no) {
 		session.delete("dao.ClassDAO.delete", no);
 		session.commit();		
+	}
+
+	public void updateAttendance(int classNo) {
+		session.update("dao.ClassDAO.updateAttendance", classNo);
+		session.commit();
+	}
+
+	public ClassVO selectByNo(int classNo) {
+		ClassVO classVo = session.selectOne("dao.ClassDAO.selectByNo", classNo);
+		return classVo;
 	}
 	
 }

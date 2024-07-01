@@ -12,30 +12,23 @@
     	<div class="navbar-nav mx-auto">
         	<a href="/dangdangdang/" class="nav-item nav-link active">Home</a>
         	<div class="nav-item dropdown">
-            	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">수업 및 이용권</a>
+            	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">결제 및 이용권</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                	<a href="facility.html" class="dropdown-item">수업 소개</a>
-                    <a href="/dangdangdang/pass.do" class="dropdown-item">이용권 결제</a>
+                	<a href="/dangdangdang/paymentList.do" class="dropdown-item">결제 관리</a>
+                    <a href="/dangdangdang/subList.do" class="dropdown-item">이용권 관리</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
-            	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">예약</a>
+            	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">수업 관리</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                	<a href="/dangdangdang/visitReserve.do" class="dropdown-item">상담 예약</a>
-                    <a href="/dangdangdang/classReserve.do" class="dropdown-item">수업 예약</a>
+                	<a href="/dangdangdang/classList.do" class="dropdown-item">수업 예약 관리</a>
+                    <a href="/dangdangdang/ActivityList.do" class="dropdown-item">활동 일지</a>
                 </div>
            	</div>
-            <a href="/dangdangdang/activity.do" class="nav-item nav-link">활동 일지</a>
+            <a href="/dangdangdang/visitList.do" class="nav-item nav-link">상담 예약 관리</a>
             <a href="/dangdangdang/contact/contact.jsp" class="nav-item nav-link">온라인 상담</a>
         </div>
-        <c:if test="${empty member}">
-        	<%-- 통합페이지로 가게 로직 바꿀 것! --%>
-        	<a href="/dangdangdang/login.do" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
-        </c:if>
-        <c:if test="${not empty member}">
-        	<%-- 통합페이지로 가게 로직 바꿀 것! --%>
         	<a href="/dangdangdang/login.do" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">로그아웃<i class="fa fa-arrow-right ms-3"></i></a>
-        </c:if>
 	</div>
 </nav>
         <!-- Navbar End -->
