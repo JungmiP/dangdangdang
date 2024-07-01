@@ -11,7 +11,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="./resources/img/favicon.ico" rel="icon">
+    <link href="/dangdangdang/resources/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,8 +54,12 @@
             </div>
         </div>
         <!-- Spinner End -->
-
-		<jsp:include page="/include/adminMenu.jsp" />
+		<c:if test="${not empty member.admin}">
+			<jsp:include page="/include/adminMenu.jsp" />
+		</c:if>
+		<c:if test="${empty member.admin}">
+			<jsp:include page="/include/adminMenu.jsp" />
+		</c:if>
         
         <!-- Page Header Start -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
@@ -65,7 +69,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Reservation</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">수업 관리</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">활동 일지</li>
                     </ol>
                 </nav>
             </div>

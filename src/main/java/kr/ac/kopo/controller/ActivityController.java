@@ -24,9 +24,9 @@ public class ActivityController implements Controller {
 			for(DogVO dog : dogList) {
 				int no = dog.getNo();
 				List<ActivityVO> list = service.searchActivityByDogNo(no);
-				activityMap.put(String.valueOf(no), list);
+				activityMap.put(dog.getName(), list);
 			}
-			request.setAttribute(null, dogList);
+			request.setAttribute("activityMap", activityMap);
 		}
 				
 		

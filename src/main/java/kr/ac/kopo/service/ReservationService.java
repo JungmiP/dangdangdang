@@ -24,6 +24,10 @@ public class ReservationService {
 		return list;
 	}
 	
+	public void updateStatus(ReservationVO reserve) {
+		reserveDao.updateStatus(reserve);
+	}
+	
 	public int removeReserve(int no) {
 		int result = reserveDao.delete(no);
 		return result;

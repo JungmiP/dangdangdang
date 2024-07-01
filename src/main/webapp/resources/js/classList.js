@@ -181,7 +181,7 @@
 							+"<td>"+this.regDate.substring(0, 10)+"</td>"
 							+"<td>"+ (( this.status == 'A')? "확정" : (this.status == 'C') ? "취소" : "만료") + "</td>"
 							+"<td class='attendance'>"+ ((this.attendance == 'P') ? "출석" : "" )+"</td>"
-							+"<td><a href='writeActivity.do?classNo="+ this.no +"' class='btn btn-dark'>일지쓰기</a></td></tr>"
+							+"<td><a href='writeActivity.do?classNo="+ this.no +"' class='btn btn-dark btn-sm'>일지쓰기</a></td></tr>"
 					$("#listTableBody").append(tr)
 				})
 				

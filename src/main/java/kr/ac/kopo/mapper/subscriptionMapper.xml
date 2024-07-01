@@ -28,9 +28,14 @@
  	</select>
  
  	<!-- 모든 이용권 조회  -->
- 	<select id="selectAllById" parameterType="String" resultMap="subscriptionMap">
+ 	<select id="selectAll" parameterType="String" resultMap="subscriptionMap">
  		<include refid="selectSubscription" />
- 		 where member_id = #{memberId}
+ 		<where>
+ 			<if test="memberId != null">
+ 		 	member_id = #{memberId}
+ 			</if>
+ 		</where>
+ 		order by start_date desc
  	</select>
  
  	<!-- 이용권 남은 수량 수정 -->

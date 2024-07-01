@@ -43,6 +43,12 @@ public class ReservationDAO {
 		session.insert("dao.ReservationDAO.insert", reserve);
 		session.commit();
 	}
+
+	public void updateStatus(ReservationVO reserve) {
+		session.update("dao.ReservationDAO.updateStatus", reserve);
+		session.commit();
+		
+	}
 	
 	
 	

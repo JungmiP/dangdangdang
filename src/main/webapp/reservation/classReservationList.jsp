@@ -44,14 +44,14 @@
 	<script>
 	function changeAttendance(){
 			
-			let checkbox = $("input[name=attendCheck]:checked");
-			let arr = []; 
-			checkbox.each(function(i, el){
-				let tmp = { "classNo" : $(el).val()}
-				arr.push(tmp)
-			})
+		let checkbox = $("input[name=attendCheck]:checked");
+		let arr = []; 
+		checkbox.each(function(i, el){
+			let tmp = { "classNo" : $(el).val()}
+			arr.push(tmp)
+		})
 			
-			$.ajax({
+		$.ajax({
 			url: '/dangdangdang/reservation/updateAttendance.jsp',
 			type: 'post',			
 			data: {
@@ -69,7 +69,7 @@
 			}
 		})
 			
-		}
+	}
 	</script>
 
 </head>

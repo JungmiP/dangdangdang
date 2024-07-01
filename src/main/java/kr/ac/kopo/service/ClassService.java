@@ -43,6 +43,12 @@ public class ClassService {
 		classDao.updateAttendance(classNo);
 	}
 	
+	// class status 변경
+	public void updateStatus(ClassVO classVo) {
+		// 이용권 하나 회복
+		subscriptionDao.addClass(classVo.getSubscriptionNo());
+		classDao.updateStatus(classVo);
+	}
 	
 	// class 예약 삭제
 	public void removeClass(ClassVO classVo) {

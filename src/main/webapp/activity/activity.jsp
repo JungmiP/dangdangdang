@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,17 +45,30 @@
     <script src='/dangdangdang/resources/fullcalendar/fullcalendar/packages/interaction/main.js'></script>
     <script src='/dangdangdang/resources/fullcalendar/fullcalendar/packages/daygrid/main.js'></script>
 	<script>
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 	let today = new Date()
 	let now = today.getFullYear()+ "-" + String(today.getMonth() + 1).padStart(2,"0")+ "-" + String(today.getDate()).padStart(2, "0")
-	
+	let activities = [];
+	<c:if test="${not empty activityMap}">
+		<c:forEach items="${dogList}" var="dog">
+			<c:forEach items="${activityMap[dog.name]}" var="activity">
+				let tmp = {title : '${dog.name} 일지'
+						, url: '/dangdangdang/activityDetail?no=${activity.no}'
+						, start:'${activity.activityDate}'.substring(0, 10)}
+				console.log(tmp);
+				activities.push(tmp)
+			</c:forEach>
+		</c:forEach>
+	</c:if>
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
       defaultDate: now,
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
+      events: activities
+    	 /* 
+    	  [
         {
           title: 'All Day Event',
           start: '2024-07-01'
@@ -109,7 +123,7 @@
           url: 'http://google.com/',
           start: '2024-07-28'
         }
-      ]
+      ]*/
     });
 
     calendar.render();
@@ -119,7 +133,7 @@
 </head>
 <body>
 <div class="container-xxl bg-white p-0">
-	<jsp:include page="../include/topMenu.jsp" />
+	<jsp:include page="/include/topMenu.jsp" />
 	<!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">

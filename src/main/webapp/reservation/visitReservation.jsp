@@ -124,6 +124,27 @@
 	  			$("label[for="+tmp+"]").addClass("reserved")
 	  		}	
 	  	})
+	  	
+	  	fucntion cancelVisit(no){
+	  		console.log(no)
+	  		if(confirm('취소하시겠습니까?')){
+	  			$.ajax({
+	  				url: '/dangdangdang/reservation/cancelVisit.jsp',
+	  				type: 'post',			
+	  				data: {
+	  					"no": no
+	  				},
+	  				success : function(response){
+	  					console.log('성공')
+	  					// 상태 취소로 업데이트
+	  					location.reload();
+	  				},
+	  				error : function(){
+	  					alert('실패')
+	  				}
+	  			})
+	  		}
+	  	}
   	})
   	</script>
 </head>
@@ -266,9 +287,16 @@ Modal end -->
 					<tr>
 						<td>${reserve.no}</td>
 						<td>${reserve.reserveDate}</td>
-						<td>${(reserve.status=='A')?"확정":(reserve.status=='C')?"취소":"만료"}</td>
+						<td>${(reserve.status == 'A')?"확정":(reserve.status == 'C')?"취소":"만료"}</td>
 						<td>${reserve.regDate}</td>
-						<td><button class="btn btn-dark">취소</button></td>
+						<td>
+							<c:if test="${reserve.status == 'A'}">
+								<button class="btn btn-dark btn-sm" onclick="cancelVisit(${reserve.no})">취소</button>
+							</c:if>
+							<c:if test="${reserve.status != 'A'}">
+								<button class="btn btn-secondary btn-sm" onclick="return false;">취소</button>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>

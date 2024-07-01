@@ -12,7 +12,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="./resources/img/favicon.ico" rel="icon">
+    <link href="/dangdangdang/resources/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,14 +23,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="./resources/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="./resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="./resources/css/style.css" rel="stylesheet">
+    <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dangdangdang/resources/lib/wow/wow.min.js"></script>
+    <script src="/dangdangdang/resources/lib/easing/easing.min.js"></script>
+    <script src="/dangdangdang/resources/lib/waypoints/waypoints.min.js"></script>
+    <script src="/dangdangdang/resources/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/dangdangdang/resources/js/main.js"></script>
 </head>
 
 <body>
@@ -43,7 +54,7 @@
         </div>
         <!-- Spinner End -->
        		
-			<jsp:include page="./include/adminMenu.jsp" />
+			<jsp:include page="/include/adminMenu.jsp" />
 			 
 		      
         <!-- Carousel Start -->
@@ -577,23 +588,13 @@
         </div>
         <!-- Call To Action End -->
 
-		<jsp:include page="./include/footer.jsp" />
+		<jsp:include page="/include/footer.jsp" />
         
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./resources/lib/wow/wow.min.js"></script>
-    <script src="./resources/lib/easing/easing.min.js"></script>
-    <script src="./resources/lib/waypoints/waypoints.min.js"></script>
-    <script src="./resources/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="./resources/js/main.js"></script>
 </body>
 
 </html>

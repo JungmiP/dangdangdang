@@ -3,8 +3,6 @@
 <%@page import="com.google.gson.reflect.TypeToken"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="org.json.JSONObject"%>
-<%@page import="org.json.JSONArray"%>
 
 <%@page import="com.google.gson.Gson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

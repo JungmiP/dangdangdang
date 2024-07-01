@@ -30,6 +30,7 @@
   		 <if test="reserveDate == null">
   		 where to_char(reserve_date, 'yyyymmdd') = to_char(SYSDATE, 'yyyymmdd') 
   		 </if>
+  		 and status != 'C'
   	</select>
   	
   	<!-- 멤버 id로 조회 -->

@@ -17,5 +17,14 @@ public class SubscriptionService {
 		return list;
 	}
 	
+	public List<SubscriptionVO> searchAll(){
+		List<SubscriptionVO> list = subscriptionDao.selectAll();
+		return list;
+	}
+	
+	public List<SubscriptionVO> searchAll(String memberId){
+		List<SubscriptionVO> list = subscriptionDao.selectAll(memberId);
+		return list;
+	}
 	
 }

@@ -36,7 +36,30 @@
   	<script src="/dangdangdang/resources/js/popper.js"></script>
   	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
   	<script src="/dangdangdang/resources/js/classReserve.js"></script>
-
+	<script>
+	function cancelClass(no){
+		if(confirm('취소하시겠습니까?')){
+			$.ajax({
+  				url: '/dangdangdang/reservation/cancelClass.jsp',
+  				type: 'post',			
+  				data: {
+  					"no": no
+  				},
+  				success : function(response){
+  					console.log('성공')
+  					// 상태 취소로 업데이트
+  					// 달력 다시 로드?
+  					// 예약 내역에서 상태 삭제로 변경
+  					// 
+  					location.reload();
+  				},
+  				error : function(){
+  					alert('실패')
+  				}
+  			})
+		}
+	}
+	</script>
 </head>
 <body>
 <div class="container-xxl bg-white p-0">
@@ -166,7 +189,14 @@
 							<td>${classVo.teacherId}</td>
 							<td>${(classVo.status == 'A')?"확정":(classVo.status == 'C')?"취소":"만료"}</td>
 							<td>${classVo.regDate}</td>
-							<td><button>취소</button></td>
+							<td>
+								<c:if test="${classVo.status == 'A'}">
+								<button class="btn btn-dark btn-sm" onclick="cancelClass(${classVo.no})">취소</button>
+								</c:if>
+								<c:if test="${classVo.status != 'A'}">
+								<button class="btn btn-secondary btn-sm" onclick="return false;">취소</button>
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

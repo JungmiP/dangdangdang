@@ -45,6 +45,7 @@
   		SELECT TEACHER_ID as teacherId, COUNT(*) as cnt
  		  FROM CLASS 
 		 WHERE CLASS_DATE = TO_DATE(#{date}, 'YYYYMMDD')
+		   AND STATUS != 'C'
          GROUP BY TEACHER_ID
   	</select> 	 
   	 

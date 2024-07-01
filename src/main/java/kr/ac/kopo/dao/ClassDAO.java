@@ -53,5 +53,9 @@ public class ClassDAO {
 		ClassVO classVo = session.selectOne("dao.ClassDAO.selectByNo", classNo);
 		return classVo;
 	}
+
+	public void updateStatus(ClassVO classVo) {
+		session.update("dao.ClassDAO.updateStatus", classVo);
+	}
 	
 }

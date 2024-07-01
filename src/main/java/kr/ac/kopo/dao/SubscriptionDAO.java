@@ -42,4 +42,15 @@ public class SubscriptionDAO {
 		session.commit();
 		
 	}
+	
+	
+	public List<SubscriptionVO> selectAll(){
+		List<SubscriptionVO> list = session.selectList("dao.SubscriptionDAO.selectAll");
+		return list;
+	}
+	
+	public List<SubscriptionVO> selectAll(String memberId){
+		List<SubscriptionVO> list = session.selectList("dao.SubscriptionDAO.selectAll", memberId);
+		return list;
+	}
 }

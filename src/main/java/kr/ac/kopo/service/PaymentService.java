@@ -1,5 +1,7 @@
 package kr.ac.kopo.service;
 
+import java.util.List;
+
 import kr.ac.kopo.dao.PassDAO;
 import kr.ac.kopo.dao.PaymentDAO;
 import kr.ac.kopo.dao.SubscriptionDAO;
@@ -7,10 +9,17 @@ import kr.ac.kopo.vo.PaymentVO;
 import kr.ac.kopo.vo.SubscriptionVO;
 
 public class PaymentService {
-	private PaymentDAO paymentDao = new PaymentDAO();
-	private SubscriptionDAO subscriptionDao = new SubscriptionDAO();
-	private PassDAO passDao = new PassDAO();
 	
+	private PaymentDAO paymentDao;
+	private SubscriptionDAO subscriptionDao;
+	private PassDAO passDao;
+	
+	public PaymentService() {
+		paymentDao = new PaymentDAO();
+		subscriptionDao = new SubscriptionDAO();
+		passDao = new PassDAO();
+	}
+
 	public void createPayment(PaymentVO pay) {
 		paymentDao.insert(pay);		
 						
@@ -19,5 +28,15 @@ public class PaymentService {
 		sub.setPaymentNo(pay.getNo());		
 		
 		subscriptionDao.insert(sub);
+	}
+	
+	public List<PaymentVO> searchAll(){
+		List<PaymentVO> list = paymentDao.selectAll();
+		return list;
+	}
+	
+	public List<PaymentVO> searchAll(String memberId){
+		List<PaymentVO> list = paymentDao.selectAll(memberId);
+		return list;
 	}
 }
