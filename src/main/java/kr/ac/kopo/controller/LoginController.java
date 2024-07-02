@@ -18,7 +18,7 @@ public class LoginController implements Controller{
 		member.setId("user");
 		member.setName("사용자");
 		request.getSession().setAttribute("member", member);
-		if(member.getAdmin() == 'A') {
+		if(member.getAdmin() != null) {
 			return "/admin.jsp";
 		}
 		

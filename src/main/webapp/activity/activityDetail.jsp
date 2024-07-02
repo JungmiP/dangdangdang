@@ -16,7 +16,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&family=IBM+Plex+Sans+KR&family=Song+Myung&display=swap" rel="stylesheet">
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -40,7 +40,9 @@
     <script src="/dangdangdang/resources/lib/waypoints/waypoints.min.js"></script>
     <script src="/dangdangdang/resources/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="/dangdangdang/resources/js/main.js"></script>
-    
+    <script>
+    	console.log("${member.admin}")
+    </script>
 
 
 </head>
@@ -58,7 +60,7 @@
 			<jsp:include page="/include/adminMenu.jsp" />
 		</c:if>
 		<c:if test="${empty member.admin}">
-			<jsp:include page="/include/adminMenu.jsp" />
+			<jsp:include page="/include/topMenu.jsp" />
 		</c:if>
         
         <!-- Page Header Start -->
@@ -81,7 +83,7 @@
              	<div class="row justify-content-center">
                 	<div class="row">
                 		<div class="col-sm-12">
-                			<h4>${activity.activityDate} 활동일지</h4>
+                			<h4>${activity.activityDate.substring(0, 10)} 활동일지</h4>
                 		</div>
                 		<div class="col-sm-6">
                 			<div>강아지 : ${activity.dogNo}</div>

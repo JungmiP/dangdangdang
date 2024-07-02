@@ -15,7 +15,7 @@
             	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">결제 및 이용권</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
                 	<a href="/dangdangdang/paymentList.do" class="dropdown-item">결제 관리</a>
-                    <a href="/dangdangdang/subList.do" class="dropdown-item">이용권 관리</a>
+                    <a href="/dangdangdang/subscriptionList.do" class="dropdown-item">이용권 관리</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

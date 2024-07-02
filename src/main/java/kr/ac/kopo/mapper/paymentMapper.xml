@@ -17,7 +17,7 @@
   	</sql>
   	
   	<select id="selectAll" parameterType="String" resultMap="paymentMap">
-  		<include refid="selectPayment">
+  		<include refid="selectPayment" />
   		<where>
   			<if test=" memberId != null">
   				member_id = #{memberId}

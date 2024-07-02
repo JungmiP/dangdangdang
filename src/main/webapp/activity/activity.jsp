@@ -16,7 +16,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&family=IBM+Plex+Sans+KR&family=Song+Myung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
     <!-- Icon Font Stylesheet -->
@@ -50,14 +50,15 @@
 	let today = new Date()
 	let now = today.getFullYear()+ "-" + String(today.getMonth() + 1).padStart(2,"0")+ "-" + String(today.getDate()).padStart(2, "0")
 	let activities = [];
+	let report;
 	<c:if test="${not empty activityMap}">
 		<c:forEach items="${dogList}" var="dog">
 			<c:forEach items="${activityMap[dog.name]}" var="activity">
-				let tmp = {title : '${dog.name} 일지'
-						, url: '/dangdangdang/activityDetail?no=${activity.no}'
+				report = {title : '${dog.name} 일지'
+						, url: '/dangdangdang/activityDetail.do?no=${activity.no}'
 						, start:'${activity.activityDate}'.substring(0, 10)}
-				console.log(tmp);
-				activities.push(tmp)
+				console.log(report);
+				activities.push(report)
 			</c:forEach>
 		</c:forEach>
 	</c:if>

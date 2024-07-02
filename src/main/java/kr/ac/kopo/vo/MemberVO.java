@@ -11,9 +11,9 @@ public class MemberVO {
 	private String detailAddr;
 	private String email;
 	private String regDate;
-	private char grade;
-	private char oauth;
-	private char admin;
+	private String grade;
+	private String oauth;
+	private String admin;
 	
 	
 	public String getId() {
@@ -75,23 +75,24 @@ public class MemberVO {
 	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
-	}
-	public char getGrade() {
+	}	
+	
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(char grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public char getOauth() {
+	public String getOauth() {
 		return oauth;
 	}
-	public void setOauth(char oauth) {
+	public void setOauth(String oauth) {
 		this.oauth = oauth;
 	}
-	public char getAdmin() {
+	public String getAdmin() {
 		return admin;
 	}
-	public void setAdmin(char admin) {
+	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
 	
