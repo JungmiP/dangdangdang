@@ -31,12 +31,62 @@
     <!-- Template Stylesheet -->
     <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">	
 	<link rel="stylesheet" href="/dangdangdang/resources/css/calendar_style.css">
+	<style>
+		input[type=radio]{
+  			display: none;
+  			margin:10px;
+  		}
+  		
+  		
+  		input[type=radio] + label{
+  			display: inline-block;
+  			margin: 2px;
+  			padding: 8px;
+  			background-color: #FFF5F3;
+			text-align:center;
+			border-radius: 10px;
+			width: 30%;
+  		}
+  		
+  		input[type=radio]:checked + label{
+  			color: #FE5D37;
+  			font-weight: bold;
+  		}
+  		
+  		.radioSub + label {
+  			width: 90%;
+  		}
+  		
+  		#submitBtn {
+  			background-color: #FFF5F3;
+  			color:#FE5D37;
+  			float:right;
+  			margin: 5px;
+  		}
+  		
+  		.form-label {
+  			margin: 5px;
+  			font-size: 1em;
+  			align-items:flex-start;
+  			font-weight: bold;
+  		}
+  		
+  		.reserved {
+  			background-color: #9e9e9e !important; 
+  			color: #e6e6e6;
+  		}
+	</style>
 	
 	<script src="/dangdangdang/resources/js/jquery.min.js"></script>
   	<script src="/dangdangdang/resources/js/popper.js"></script>
   	<script src="/dangdangdang/resources/js/bootstrap.min.js"></script>
   	<script src="/dangdangdang/resources/js/classReserve.js"></script>
 	<script>
+	<c:if test="${not empty msg}">
+		alert("${msg}")
+		<c:remove var="msg" scope="request" />
+	</c:if>
+	
 	function cancelClass(no){
 		if(confirm('취소하시겠습니까?')){
 			$.ajax({
@@ -133,10 +183,10 @@
 				      </div>
 				    </div>
 				    <div class="events-container">
-				    	<div class="event-card">
+				    	<div class="events-card">
 				    	
 				    	</div>
-				    	<div>
+				    	<div class="row justify-content-center">
 				    		<form action="/dangdangdang/classForm.do" method="post" id="classForm">
 				    		<input type="hidden" name="memberId" value="${member.id}">
 				    		<input type="hidden" name="date">
@@ -149,7 +199,7 @@
 					    				</c:forEach>
 				    				</c:if>
 				    				<c:if test="${empty dogList}">
-				    					<button>강아지 등록하기</button>
+				    					<button class="btn btn-light">강아지 등록하기</button>
 				    				</c:if>
 				    			<div class="form-label">선생님 선택</div>
 				    				<%-- 선생님 이름 조회 후 목록 만들고 가능 여부 설정 --%>

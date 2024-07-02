@@ -51,6 +51,13 @@
          WHERE NO = #{no}
  	</update>
  	
+ 	<update id="setZeroRemainClasses" parameterType="int">
+ 		UPDATE SUBSCRIPTION
+   		   SET REMAIN_CLASSES = 0
+         WHERE PAYMENT_NO = #{no}
+ 	</update>
+ 	
+ 	
   	<!-- 이용권 내역 삽입 -->
   	<insert id="insert" parameterType="subscriptionVO">
   		INSERT INTO SUBSCRIPTION (NO, PAYMENT_NO, MEMBER_ID , PASS_NO, START_DATE, END_DATE, REMAIN_CLASSES)
@@ -61,7 +68,7 @@
 		  , #{passNo}
 		  , SYSDATE
 		  , TO_DATE(#{endDate}, 'yyyy-mm-dd hh24:mi:ss')
-		  , #{remainClasses}		  
+		  , #{remainClasses}
 		)
   	</insert>
 </mapper>

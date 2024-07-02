@@ -43,6 +43,12 @@ public class SubscriptionDAO {
 		
 	}
 	
+	public void setZeroRemainClass(int paymentNo) {
+		session.update("dao.SubscriptionDAO.setZeroRemainClasses", paymentNo);
+		session.commit();
+		
+	}
+	
 	
 	public List<SubscriptionVO> selectAll(){
 		List<SubscriptionVO> list = session.selectList("dao.SubscriptionDAO.selectAll");

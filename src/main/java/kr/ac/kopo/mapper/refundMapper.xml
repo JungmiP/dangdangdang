@@ -25,7 +25,17 @@
   	  	
   	<!-- 이용권 내역 삽입 -->
   	<insert id="insert" parameterType="refundVO">
-  		INSERT INTO PASS (NO, NAME, DESCRIPTION, PRICE, DURATION, TOTAL_CLASSES)
-		VALUES (SEQ_PASS_NO.nextval, #{name}, #{description}, #{price}, #{duration}, #{totalClasses})
+  		<selectKey keyProperty="amount" resultType="int" order="BEFORE" >
+  		SELECT CASE WHEN (p.amount - ((ps.TOTAL_CLASSES - s.REMAIN_CLASSES) * 50000)) &lt; 0 THEN 0 
+					ELSE (p.amount - ((ps.TOTAL_CLASSES - s.REMAIN_CLASSES) * 50000))
+				END AS amount
+  		  FROM PAYMENT p 
+  		  JOIN SUBSCRIPTION s ON s.PAYMENT_NO = p.NO
+  		  JOIN pass ps ON ps.NO = s.PASS_NO 
+ 		 WHERE p.NO = ${paymentNo}  		
+  		</selectKey>
+  		INSERT INTO REFUND (NO, PAYMENT_NO, AMOUNT, REASON)
+		values (seq_refund_no.nextval, #{paymentNo}, #{amount}, #{reason})
+  		
   	</insert>
 </mapper>

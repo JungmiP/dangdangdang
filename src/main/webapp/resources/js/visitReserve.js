@@ -157,7 +157,7 @@ function show_date(month, day) {
     $(".events-card").empty();
     $(".events-card").show(250);
     
-    let event_name = "<h4 class='m-3' style='color:#FFF5F3;'>" + month + "월 " + day + "일 예약하기</h4>";
+    let event_name = "<h4 class='m-1' style='color:#FFF5F3;'>" + month + "월 " + day + "일 예약하기</h4>";
     $(".events-card").append(event_name);
 }
 

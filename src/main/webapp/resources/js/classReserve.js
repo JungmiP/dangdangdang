@@ -79,9 +79,9 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     show_events(event.data.month, event.data.day);
-    let now = event.data.year + String(event.data.month).padStart(2, "0") + String(event.data.day).padStart(2, "0")
-    checkReserve(now)
-    $(classForm.date).val(now)
+    let tarDate = event.data.year + String(event.data.month).padStart(2, "0") + String(event.data.day).padStart(2, "0")
+    checkReserve(tarDate)
+    $(classForm.date).val(tarDate)
 };
 
 // Event handler for when a month is clicked
@@ -117,10 +117,10 @@ function prev_year(event) {
 // Display all events of the selected date in card views
 function show_events(month, day) {
     // Clear the dates container
-    $(".event-card").empty();
-    $(".event-card").show(250);
-    let event_name = $("<div class='event-name'>" + month + "월 " + day + "일 수업 예약</div>");
-    $(".event-card").append(event_name);
+    $(".events-card").empty();
+    $(".events-card").show(250);
+    let event_name = $("<h4 class='m-1' style='color:#FFF5F3;'>" + month + "월 " + day + "일 수업 예약</h4>");
+    $(".events-card").append(event_name);
 }
 
 // Checks if a specific date has any events
@@ -155,6 +155,7 @@ function checkReserve(tarDate){
 						if(this.CNT >= 10){
 							$("#"+this.TEACHERID).attr("onclick", "return false;")
 							//css 변경도 추가할 것
+							
 						}
 					})					
 				},

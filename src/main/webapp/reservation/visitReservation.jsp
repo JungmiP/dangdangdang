@@ -123,9 +123,11 @@
 	  			$("#"+ tmp).attr("onclick", "return false;")
 	  			$("label[for="+tmp+"]").addClass("reserved")
 	  		}	
-	  	})
+	  	})	
 	  	
-	  	fucntion cancelVisit(no){
+  	})
+  	
+  	function cancelVisit(no){
 	  		console.log(no)
 	  		if(confirm('취소하시겠습니까?')){
 	  			$.ajax({
@@ -145,7 +147,6 @@
 	  			})
 	  		}
 	  	}
-  	})
   	</script>
 </head>
 <body>
@@ -238,9 +239,12 @@ Modal end -->
 				    <div class="events-container" >
 				    	<div class="events-card">				    		
 				    	</div>
-				    	<div class="row g-3">
-				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm">
-				          		<div class="form-container">
+				    	<div class="row justify-content-center">
+				    		<p style="width:95%; margin:2px; padding:2px; background-color:#FFF5F3;">안내사항<br>
+				    			1. 당일 예약, 당일 취소 불가<br>
+				    			2. 사유를 구체적으로 적어주시면 상담이 더 원활하게 이루어집니다.</p>				    		
+				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm" >
+				          		<div class="form-container" style="margin-top: 3px;">
 				          			<input type="hidden" name="redate" />
 				          			<!-- 로그인한 유저 아이디로 바꾸기 -->
 				          			<input type="hidden" name="memberId" value="${member.id}" />
