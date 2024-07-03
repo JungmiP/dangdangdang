@@ -1,5 +1,7 @@
 package kr.ac.kopo.vo;
 
+import kr.ac.kopo.util.Paging;
+
 public class PaymentVO {
 	private int no;
 	private String memberId;
@@ -7,7 +9,7 @@ public class PaymentVO {
 	private int amount;
 	private String payMethod;
 	private String payDate;
-	
+	private Paging paging;
 	
 	public int getNo() {
 		return no;
@@ -44,6 +46,14 @@ public class PaymentVO {
 	}
 	public void setPayDate(String payDate) {
 		this.payDate = payDate;
+	}
+	
+	public Paging getPaging() {
+		return paging;
+	}
+	
+	public void setPaging(Paging paging) {
+		this.paging = paging;
 	}
 	
 	@Override

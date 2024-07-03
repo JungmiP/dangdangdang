@@ -42,13 +42,20 @@
 	    		</c:if>
     		</c:forEach>    		
     		$("#buyBtn").click(function(){
-    			location.href="payment.do?"+param
+    			if('${member}' != null){
+	    			location.href="payment.do?"+param
+    	  		}else{
+    	  			alert('로그인을 해주세요')
+    	  		}
     		})
     	})
+    	
+    	
     </script>
 </head>
 <body>
 	<div class="container-xxl bg-white p-0">
+	
 	<jsp:include page="../include/topMenu.jsp" />
 	<!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
@@ -70,8 +77,7 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Class Passes</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit
-                        eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <p>한 번 체험할 수 있는 1회권 부터 1년간 30회 이용할 수 있는 이용권 등 다양한 횟수의 이용권 옵션을 제공합니다.</p>
                 </div>
                 <div class="row g-4" align="center">
                 	<c:forEach items="${passList}" var="pass" varStatus="status">
@@ -82,8 +88,8 @@
                             <h3 class="card-title">${ pass.name }</h3>
                             <hr>
                             	<table class="card-text">
-                            	<tr><th>이용횟수</th><td>${pass.totalClasses}</td></tr>
-                            	<tr><th>기간</th><td>${ pass.duration }개월</td></tr>
+                            	<tr><th>이용횟수</th><td>${pass.totalClasses}회</td></tr>
+                            	<tr><th>유효 기간</th><td>${ pass.duration }개월</td></tr>
                             	<tr><th>가격</th><td><fmt:formatNumber value="${pass.price}" />원</td></tr>
                             	<tr><td colspan="2">${pass.description }</td></tr>
                             	</table>
@@ -95,7 +101,7 @@
                 	</c:forEach>
                     
                     
-                  <button class="btn btn-primary w-80 py-3" id="buyBtn">이용권 구매하기</button>
+                  <button class="btn btn-primary w-80 py-3" id="buyBtn" >이용권 구매하기</button>
                 </div>
             </div>
         </div>

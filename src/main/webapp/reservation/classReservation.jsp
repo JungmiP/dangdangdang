@@ -53,15 +53,18 @@
   			font-weight: bold;
   		}
   		
-  		.radioSub + label {
-  			width: 90%;
+  		input[name=subNo] + label {
+  			width: 98%;
+  		}
+  		
+  		.button-white {
+  			background-color: #FFF5F3;
+  			color:#FE5D37;  			
+  			margin: 5px;
   		}
   		
   		#submitBtn {
-  			background-color: #FFF5F3;
-  			color:#FE5D37;
   			float:right;
-  			margin: 5px;
   		}
   		
   		.form-label {
@@ -101,7 +104,11 @@
   					// 달력 다시 로드?
   					// 예약 내역에서 상태 삭제로 변경
   					// 
-  					location.reload();
+  					$('#tr' + no).children().children().button().removeClass('btn-dark')
+	  				$('#tr' + no).children().children().button().addClass('btn-secondary')
+	  				$('#tr' + no).children().children().button().attr('onclick', 'return false;')
+	  				$('#tr' + no +' td:nth-child(5)').text('취소')
+  					
   				},
   				error : function(){
   					alert('실패')
@@ -109,10 +116,30 @@
   			})
 		}
 	}
+	
+	function checkLogin(){
+		if('${member}' != null){
+			// 강아지 등록 페이지로 이동
+  		}else{
+  			alert('로그인을 해주세요')
+  		}
+	}
+	
+	
+	function existClass(){
+		$("#listTableBody tr td:nth-child(3)").each(function(){ 
+			if(classForm.dogNo.value == this.innerText){
+				alert('이미 수업을 예약하셨습니다')
+				return false;	
+			}
+		})
+		return true;
+	}
 	</script>
 </head>
 <body>
 <div class="container-xxl bg-white p-0">
+
 	<jsp:include page="/include/topMenu.jsp" />
 	<!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
@@ -187,7 +214,12 @@
 				    	
 				    	</div>
 				    	<div class="row justify-content-center">
-				    		<form action="/dangdangdang/classForm.do" method="post" id="classForm">
+				    	<c:if test="${empty member}">
+				    		<button class="button button-white">회원가입</button>
+				    		<button class="button button-white">로그인</button>
+				    	</c:if>
+				    	<c:if test="${not empty member}">
+				    		<form action="/dangdangdang/classForm.do" method="post" id="classForm" onsubmit="return existClass()">
 				    		<input type="hidden" name="memberId" value="${member.id}">
 				    		<input type="hidden" name="date">
 				    			<div class="form-label">강아지 선택</div>
@@ -199,7 +231,7 @@
 					    				</c:forEach>
 				    				</c:if>
 				    				<c:if test="${empty dogList}">
-				    					<button class="btn btn-light">강아지 등록하기</button>
+				    					<button class="btn btn-light" onclick="checkLogin()">강아지 등록하기</button>
 				    				</c:if>
 				    			<div class="form-label">선생님 선택</div>
 				    				<%-- 선생님 이름 조회 후 목록 만들고 가능 여부 설정 --%>
@@ -211,46 +243,35 @@
 				    				<%-- 이용권 날짜, 남은 횟수 조회 후 가능만 radio로 선택 --%>
 					    			<c:forEach items="${ subList }" var="sub">
 					    				<input type="radio" id="sub${sub.no}" name="subNo" value="${sub.no}" class="radioSub" required/>
-										<label for="sub${sub.no}">이용권 NO: ${sub.no} 남은 횟수: ${sub.remainClasses} 만료일: ${sub.endDate}</label>
+										<label for="sub${sub.no}">이용권 NO: ${sub.no} 남은 횟수: ${sub.remainClasses} 만료일: ${sub.endDate.substring(0, 10)}</label>
 					    			</c:forEach>				    				
-				    		<button class="button" type="submit" id="submitBtn" >수업 예약</button>
+				    		<button class="button button-white" type="submit" id="submitBtn" >수업 예약</button>
 				    		</form>
+				    		</c:if>
 				    	</div>
 				    </div>				    
 				  </div>
 				</div>
 			</div>
-			<c:if test="${not empty myClassList}"></c:if>
-			<div>
+			<div class="text-center table-bordered">
 				<h3>수업 예약 내역</h3>
-				<table>
+				<table class="table" id="classListTable">
+					<thead>
 					<tr>
 						<th>번호</th>
 						<th>수업일</th>
+						<th>강아지</th>
 						<th>담당 선생님</th>
 						<th>예약 상태</th>
 						<th>예약일</th>
 						<th></th>
 					</tr>
-					<c:forEach items="${ myClassList }" var="classVo" varStatus="stat">
-						<tr>
-							<td>${stat.count}</td>
-							<td>${classVo.classDate}</td>
-							<td>${classVo.teacherId}</td>
-							<td>${(classVo.status == 'A')?"확정":(classVo.status == 'C')?"취소":"만료"}</td>
-							<td>${classVo.regDate}</td>
-							<td>
-								<c:if test="${classVo.status == 'A'}">
-								<button class="btn btn-dark btn-sm" onclick="cancelClass(${classVo.no})">취소</button>
-								</c:if>
-								<c:if test="${classVo.status != 'A'}">
-								<button class="btn btn-secondary btn-sm" onclick="return false;">취소</button>
-								</c:if>
-							</td>
-						</tr>
-					</c:forEach>
+					</thead>
+					<tbody id="listTableBody">
+			
+					</tbody>
 				</table>
-			</div>			
+			</div>
 		</div>
 	</section>
 

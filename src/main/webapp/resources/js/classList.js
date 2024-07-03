@@ -88,6 +88,7 @@
         this.drawHeader(o.innerHTML);
         this.setCookie('selected_day', 1);
         let tarDate = year + String(month+1).padStart(2,"0") + o.innerHTML.padStart(2,"0")
+        $("#listTableBody").empty()
         console.log(tarDate)
         getClassList(tarDate)        
     };

@@ -78,9 +78,9 @@
 	        </div>
 	        <div class="container">
 			<div class="bg-light rounded">
-			<div class="row">
+			<div class="row g-5">
 				<div class="col-md-12">
-					<table class="talbe">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<td>번호</td>

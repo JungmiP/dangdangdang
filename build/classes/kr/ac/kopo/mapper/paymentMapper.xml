@@ -26,6 +26,21 @@
   		order by pay_date desc
   	</select>
   	
+  	
+  	<select id="selectAllPaging" parameterType="paymentVO" resultMap="paymentMap">
+  	SELECT   NO, MEMBER_ID, PASS_NO , AMOUNT, PAY_METHOD, PAY_DATE
+  	  FROM (
+        	SELECT NO, MEMBER_ID, PASS_NO , AMOUNT, PAY_METHOD, PAY_DATE, ROW_NUMBER() OVER(ORDER BY pay_date) AS RNUM
+  			  FROM payment
+           )
+ 	 WHERE RNUM BETWEEN #{paging.pageStartRecordNo} AND #{paging.pageEndRecordNo}
+ 	 ORDER BY RNUM DESC  	
+  	</select>
+  	
+  	<select id="selectCount" resultType="int">
+  	SELECT COUNT(*) FROM PAYMENT
+  	</select>
+  	
   	<!-- 결제 내역 삽입 -->
   	<insert id="insert" parameterType="paymentVO">
   		<selectKey keyProperty="no" resultType="int" order="BEFORE">

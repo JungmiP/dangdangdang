@@ -21,7 +21,8 @@ $(document).ready(function(){
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
     $(".tbody").empty();
- 
+    $(".radio-time").attr("onclick", "return false;")
+	$("input[name='time'] + label").addClass("reserved")
     var calendar_days = $(".tbody");
     var month = date.getMonth();
     var year = date.getFullYear();
@@ -82,18 +83,20 @@ function date_click(event) {
     let currDate = event.data.year + String(event.data.month).padStart(2, "0") +String(event.data.day).padStart(2, "0")
    	let now = new Date();
   	let today = now.getFullYear() + String(now.getMonth() + 1).padStart(2, "0") + String(now.getDate()).padStart(2, "0")
-    if( currDate < today){
+    if( currDate <= today){
 		$(".radio-time").attr("onclick", "return false;")
 		$("input[name='time'] + label").addClass("reserved")
-	}else if(currDate == today){
-		let hour = String(now.getHours()).padStart(2,"0") + ":00"
-		$(".radio-time").each(function(){
-			if($(this).val() < hour){
-				$(".radio-time").attr("onclick", "return false;")
-				$("input[name='time'] + label").addClass("reserved")
-			}
-		})
-	}else{
+//	}else if(currDate == today){
+//		$(".radio-time").removeAttr("onclick")    	
+//    	$("label[class='reserved']").removeClass("reserved")
+//		let hour = String(now.getHours() + 1).padStart(2,"0") + ":00"
+//		$(".radio-time").each(function(){
+//			if($(this).val() < hour){
+//				$(".radio-time").attr("onclick", "return false;")
+//				$("input[name='time'] + label").addClass("reserved")
+//			}
+//		})
+	} else {
 		$(".radio-time").removeAttr("onclick")    	
     	$("label[class='reserved']").removeClass("reserved")
 	    //ajax로 해당 날짜의 예약 리스트 불러오기

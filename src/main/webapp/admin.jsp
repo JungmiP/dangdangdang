@@ -31,6 +31,22 @@
 
     <!-- Template Stylesheet -->
     <link href="/dangdangdang/resources/css/style.css" rel="stylesheet">
+    <style>
+    	#adminTitle {
+    		width:100%;
+    		height:300px;
+    		padding: 10px;
+    	}
+    	
+    	#adminTitle h1 {
+    		margin-top: 100px;
+    	}
+    	
+    	#adminTitle p {
+    		font-size: 1.5em;
+    		color: #FE5D37;
+    	}
+    </style>
     
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -57,43 +73,11 @@
 			<jsp:include page="/include/adminMenu.jsp" />
 			 
 		      
-        <!-- Carousel Start -->
-        <div class="container-fluid p-0 mb-5">
-            <div class="owl-carousel header-carousel position-relative">
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="./resources/img/dog_run.jpg" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-2 text-white animated slideInDown mb-4">The Best Kindergarten <br> For Your Dog</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">최고의 반려견 전문가가 상주하는 믿을 수 있는 유치원.</p>
-                                    <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a>
-                                    <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="./resources/img/dog_birth_party.jpg" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-2 text-white animated slideInDown mb-4">Make Your Dog <br> Happy</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">강아지가 혼자 있는 시간을 행복하게 만들어주세요!</p>
-                                    <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a>
-                                    <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Carousel End -->
-
+       <div class="text-center mx-auto mb-5 wow fadeInUp justify-content-center" id="adminTitle" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">학교종이 댕댕댕 관리자 페이지</h1>
+                    <p>${member.name} 선생님 환영합니다!</p>
+       
+       </div>
 
         <!-- Facilities Start -->
         <div class="container-xxl py-5">
@@ -563,30 +547,7 @@
             </div>
         </div>
         <!-- Testimonial End -->
-		<!-- Call To Action Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="bg-light rounded">
-                    <div class="row g-0">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
-                            <div class="position-relative h-100">
-                                <img class="position-absolute w-100 h-100 rounded" src="./resources/img/dog_trainer.jpg" style="object-fit: cover;">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="h-100 d-flex flex-column justify-content-center p-5">
-                                <h1 class="mb-4">Become A Teacher</h1>
-                                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.
-                                    Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
-                                </p>
-                                <a class="btn btn-primary py-3 px-5" href="">Get Started Now<i class="fa fa-arrow-right ms-2"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Call To Action End -->
+		
 
 		<jsp:include page="/include/footer.jsp" />
         

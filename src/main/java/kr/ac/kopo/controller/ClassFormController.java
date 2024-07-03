@@ -24,7 +24,7 @@ public class ClassFormController implements Controller {
 		
 		request.setAttribute("msg", "수업 예약이 완료되었습니다.");
 		
-		return "/reservation/classReservation.jsp";
+		return "/classReserve.do";
 	}
 
 }

@@ -58,7 +58,7 @@
         <!-- Page Header Start -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
-                <h1 class="display-2 text-white animated slideInDown mb-4">Reservation</h1>
+                <h1 class="display-2 text-white animated slideInDown mb-4">Subscription</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -73,14 +73,14 @@
         <section class="container-xxl py-5 ftco-section">
 			<div class="container">
 				<div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-	                    <h1 class="mb-3">Payment List</h1>
+	                    <h1 class="mb-3">Subscription List</h1>
 	             </div>
 	        </div>
 	        <div class="container">
 			<div class="bg-light rounded">
-			<div class="row">
+			<div class="row g-5">
 				<div class="col-md-12">
-					<table class="talbe">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<td>번호</td>
@@ -100,10 +100,10 @@
 									<td>${subscription.no}</td>
 									<td>${subscription.paymentNo}</td>
 									<td>${subscription.memberId}</td>
-									<td>${payment.passNo}</td>
-									<td>${payment.remainClasses}회</td>
-									<td>${payment.startDate.substring(0, 10)}</td>
-									<td>${payment.endDate.substring(0, 10)}</td>
+									<td>${subscription.passNo}</td>
+									<td>${subscription.remainClasses}회</td>
+									<td>${subscription.startDate.substring(0, 10)}</td>
+									<td>${subscription.endDate.substring(0, 10)}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

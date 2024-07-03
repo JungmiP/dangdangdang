@@ -14,7 +14,7 @@
         	<div class="nav-item dropdown">
             	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">수업 및 이용권</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                	<a href="facility.html" class="dropdown-item">수업 소개</a>
+                	<a href="/dangdangdang/about.do" class="dropdown-item">수업 소개</a>
                     <a href="/dangdangdang/pass.do" class="dropdown-item">이용권 결제</a>
                 </div>
             </div>
@@ -27,6 +27,16 @@
            	</div>
             <a href="/dangdangdang/activity.do" class="nav-item nav-link">활동 일지</a>
             <a href="/dangdangdang/contact/contact.jsp" class="nav-item nav-link">온라인 상담</a>
+            <c:if test="${not empty member}">
+            <div class="nav-item dropdown">
+            	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이 페이지</a>
+            	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
+                	<a href="/dangdangdang/myPayment.do" class="dropdown-item">결제 내역</a>
+                    <a href="/dangdangdang/mySubscription.do" class="dropdown-item">이용권 내역</a>
+                </div>
+           	</div>
+           	</c:if>
+           
         </div>
         <c:if test="${empty member}">
         	<%-- 통합페이지로 가게 로직 바꿀 것! --%>

@@ -59,7 +59,10 @@ public class ClassService {
 
 	public ClassVO searchOne(int classNo) {
 		ClassVO classVo = classDao.selectByNo(classNo);
-		return classVo;
-		
+		return classVo;		
+	}
+	
+	public ClassVO searchByDogNoAndDate(ClassVO classVo) {
+		return classDao.selectByDogNoAndDate(classVo);
 	}
 }

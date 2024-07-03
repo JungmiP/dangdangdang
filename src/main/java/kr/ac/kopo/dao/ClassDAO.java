@@ -58,4 +58,8 @@ public class ClassDAO {
 		session.update("dao.ClassDAO.updateStatus", classVo);
 	}
 	
+	
+	public ClassVO selectByDogNoAndDate(ClassVO classVo) {
+		return session.selectOne("dao.ClassDAO.selectByDogNoAndDate", classVo);
+	}
 }

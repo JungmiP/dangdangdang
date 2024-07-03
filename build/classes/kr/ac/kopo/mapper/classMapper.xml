@@ -27,9 +27,10 @@
   		WHERE NO = #{no}
   	</select>
 
-  	<select id="selectByDogNo" parameterType="int" resultMap="classMap">
+  	<select id="selectByDogNoAndDate" parameterType="classVO" resultMap="classMap">
   		<include refid="selectClass" />
   		WHERE DOG_NO = #{dogNo}
+  		  AND CLASS_DATE = TO_DATE(#{classDate}, 'YYYYMMDD')
   		ORDER BY CLASS_DATE DESC
   	</select>
 

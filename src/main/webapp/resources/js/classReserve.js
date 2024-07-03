@@ -15,8 +15,11 @@ $(document).ready(function(){
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
     let now = date.getFullYear() + String(date.getMonth()+1).padStart(2, "0") + String(today).padStart(2, "0")
-    $(classForm.date).val(now)
-    
+    let classForm = document.querySelector("#classForm")
+    if(classForm != null){    	
+    	$(classForm.date).val(now)
+    }
+    getClassList(now)
     checkReserve(now)
     show_events(date.getMonth() + 1, today);
 });
@@ -81,6 +84,7 @@ function date_click(event) {
     show_events(event.data.month, event.data.day);
     let tarDate = event.data.year + String(event.data.month).padStart(2, "0") + String(event.data.day).padStart(2, "0")
     checkReserve(tarDate)
+    getClassList(tarDate)
     $(classForm.date).val(tarDate)
 };
 
@@ -121,6 +125,8 @@ function show_events(month, day) {
     $(".events-card").show(250);
     let event_name = $("<h4 class='m-1' style='color:#FFF5F3;'>" + month + "월 " + day + "일 수업 예약</h4>");
     $(".events-card").append(event_name);
+    
+    // 수업 예약 내역 가져오기!
 }
 
 // Checks if a specific date has any events
@@ -166,19 +172,39 @@ function checkReserve(tarDate){
 
 }
 
-const months = [ 
-    "January", 
-    "February", 
-    "March", 
-    "April", 
-    "May", 
-    "June", 
-    "July", 
-    "August", 
-    "September", 
-    "October", 
-    "November", 
-    "December" 
-];
+//해당 날짜에 예약된 수업 목록 가져오기
+function getClassList(tarDate){
+	$("#listTableBody").empty()
+	$.ajax({
+		url: '/dangdangdang/reservation/getMyClassList.jsp',
+		type: 'post',
+		
+		data: {
+			date: tarDate
+		},
+		success : function(response){
+			let list = JSON.parse(response)
+			console.log(list)
+			if (list != null){				
+				$(list).each(function(idx){
+					let tr = "<tr id='tr"+ this.no + "'><td>" + (idx + 1) + "</td>"
+						   + "<td>" + this.classDate.substring(0, 10) + "</td>"
+						   + "<td>" + this.dogNo + "</td>"
+						   + "<td>" + this.teacherId +"</td>"
+						   + "<td>" + ((this.status == 'A')?"확정":(this.status == 'C')?"취소":"만료") + "</td>"
+						   + "<td>"+ this.regDate.substring(0, 16) + "</td>"
+						   + "<td><button class='btn btn-"+ ((this.status == 'A')? "dark " : "secondary ") + "btn-sm' onclick=" 
+						   + ((this.status == 'A')? "'cancelClass(" + this.no + ")'" : "'return false;'") 
+						   + ">취소</button></td></tr>"; 
+								
+					$("#listTableBody").append(tr)
+				})					
+			}
+		},
+		error : function(){
+			alert('실패')
+		}
+	})	
+}
 
 })(jQuery);

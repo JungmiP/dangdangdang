@@ -128,7 +128,7 @@
   	})
   	
   	function cancelVisit(no){
-	  		console.log(no)
+	  		
 	  		if(confirm('취소하시겠습니까?')){
 	  			$.ajax({
 	  				url: '/dangdangdang/reservation/cancelVisit.jsp',
@@ -137,9 +137,12 @@
 	  					"no": no
 	  				},
 	  				success : function(response){
-	  					console.log('성공')
-	  					// 상태 취소로 업데이트
-	  					location.reload();
+	  					alert('취소가 완료되었습니다')
+	  					// 상태 취소로 업데이트 => reload()쓰니까 다시 삽입됨.
+	  					$('#tr' + no).children().children().button().removeClass('btn-dark')
+	  					$('#tr' + no).children().children().button().addClass('btn-secondary')
+	  					$('#tr' + no).children().children().button().attr('onclick', 'return false;')
+	  					$('#tr' + no +' td:nth-child(4)').text('취소')
 	  				},
 	  				error : function(){
 	  					alert('실패')
@@ -147,13 +150,21 @@
 	  			})
 	  		}
 	  	}
+  	
+  	function checkLogin(){
+  		if('${member}' != null){
+  			return true;
+  		}
+  		alert('로그인을 해주세요')
+  		return false;
+  	}
   	</script>
 </head>
 <body>
 
 <div class="container-xxl bg-white p-0">
-	<jsp:include page="/include/topMenu.jsp" />
 
+<jsp:include page="/include/topMenu.jsp" /> 
 <!-- Modal 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -240,10 +251,10 @@ Modal end -->
 				    	<div class="events-card">				    		
 				    	</div>
 				    	<div class="row justify-content-center">
-				    		<p style="width:95%; margin:2px; padding:2px; background-color:#FFF5F3;">안내사항<br>
+				    		<p style="width:95%; margin:2px; padding:2px; background-color:#FFF5F3;">&lt;안내사항&gt;<br>
 				    			1. 당일 예약, 당일 취소 불가<br>
 				    			2. 사유를 구체적으로 적어주시면 상담이 더 원활하게 이루어집니다.</p>				    		
-				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm" >
+				    		<form action="/dangdangdang/reserveForm.do" method="post" id="reserveForm" onsubmit="return checkLogin()">
 				          		<div class="form-container" style="margin-top: 3px;">
 				          			<input type="hidden" name="redate" />
 				          			<!-- 로그인한 유저 아이디로 바꾸기 -->
@@ -280,6 +291,7 @@ Modal end -->
 				<thead class="thead-dark">
 				<tr>
 					<th>번호</th>
+					<th>예약번호</th>
 					<th>방문일시</th>
 					<th>예약 상태</th>
 					<th>예약일</th>
@@ -287,12 +299,13 @@ Modal end -->
 				</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${myReserveList}" var="reserve">
-					<tr>
+				<c:forEach items="${myReserveList}" var="reserve" varStatus="stat">
+					<tr id="tr${reserve.no}">
+						<td>${stat.count}</td>
 						<td>${reserve.no}</td>
-						<td>${reserve.reserveDate}</td>
+						<td>${reserve.reserveDate.substring(0, 16)}</td>
 						<td>${(reserve.status == 'A')?"확정":(reserve.status == 'C')?"취소":"만료"}</td>
-						<td>${reserve.regDate}</td>
+						<td>${reserve.regDate.substring(0, 16)}</td>
 						<td>
 							<c:if test="${reserve.status == 'A'}">
 								<button class="btn btn-dark btn-sm" onclick="cancelVisit(${reserve.no})">취소</button>

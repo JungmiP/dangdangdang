@@ -28,5 +28,12 @@ public class PaymentDAO {
 		return list;
 	}
 
-		
+	public List<PaymentVO> selectAllPaging(PaymentVO payment){
+		List<PaymentVO> list = session.selectList("dao.PaymentDAO.selectAllPaging", payment);
+		return list;
+	}
+	
+	public int selectCount() {
+		return session.selectOne("dao.PaymentDAO.selectCount");
+	}
 }

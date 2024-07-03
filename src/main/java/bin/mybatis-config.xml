@@ -21,6 +21,7 @@
 		<typeAlias type="kr.ac.kopo.vo.DogVO" alias="dogVO" />
 		<typeAlias type="kr.ac.kopo.vo.ClassVO" alias="classVO" />
 		<typeAlias type="kr.ac.kopo.vo.ActivityVO" alias="activityVO" />
+		<typeAlias type="kr.ac.kopo.vo.RefundVO" alias="refundVO" />
 	</typeAliases>
 
   <environments default="development">
@@ -48,5 +49,6 @@
     <mapper resource="/kr/ac/kopo/mapper/reservationMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/teacherMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/activityMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/refundMapper.xml" />
   </mappers>
 </configuration>
