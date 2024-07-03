@@ -40,37 +40,7 @@
     <script src="/dangdangdang/resources/lib/waypoints/waypoints.min.js"></script>
     <script src="/dangdangdang/resources/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="/dangdangdang/resources/js/main.js"></script>
-    <script src="/dangdangdang/resources/js/classList.js"></script>
-	<script>
-	function changeAttendance(){
-			
-		let checkbox = $("input[name=attendCheck]:checked");
-		let arr = []; 
-		checkbox.each(function(i, el){
-			let tmp = { "classNo" : $(el).val()}
-			arr.push(tmp)
-		})
-			
-		$.ajax({
-			url: '/dangdangdang/reservation/updateAttendance.jsp',
-			type: 'post',			
-			data: {
-				"classNoList": JSON.stringify(arr)
-			},
-			success : function(response){
-				console.log('성공')
-				checkbox.each(function(i, el){
-				$(el).parent().parent().children(".attendance").text("출석")
-			})
-				
-			},
-			error : function(){
-				alert('실패')
-			}
-		})
-			
-	}
-	</script>
+    <%-- <script src="/dangdangdang/resources/js/visitList.js"></script>--%>
 
 </head>
 
@@ -208,15 +178,22 @@
 	        			<th>예약일</th>
 	        		</tr>
 	        		</thead>
-	        		<tbody id="listTableBody"></tbody>
-	        	</table>
-	        	
+	        		<tbody id="listTableBody">
+	        		<c:forEach items="${visitList}" var="visit" varStatus="stat">
+								<tr>
+									<td>${ stat.count}</td>
+									<td>${visit.no}</td>
+									<td>${visit.memberId}</td>
+									<td>${visit.reserveDate}</td>
+									<td>${visit.status}</td>
+									<td>${visit.regDate}</td>
+								</tr>
+							</c:forEach>
+	        		</tbody>
+	        	</table>	        	
 	        </div>
         </section>
-		<%-- 
-			- 출석 체크 조건 => status가 c가 아니고 수업일이 오늘 이하여야 함
-			- 일지 쓰기 조건 => 출석이 P여야 함. 
-		 --%>
+
 
        
 		

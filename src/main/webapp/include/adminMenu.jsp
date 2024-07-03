@@ -22,7 +22,7 @@
             	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">수업 관리</a>
             	<div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
                 	<a href="/dangdangdang/classList.do" class="dropdown-item">수업 예약 관리</a>
-                    <a href="/dangdangdang/ActivityList.do" class="dropdown-item">활동 일지</a>
+                    <a href="/dangdangdang/activityList.do" class="dropdown-item">활동 일지</a>
                 </div>
            	</div>
             <a href="/dangdangdang/visitList.do" class="nav-item nav-link">상담 예약 관리</a>

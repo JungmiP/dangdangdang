@@ -34,5 +34,10 @@ public class ActivityDAO {
 		List<ActivityVO> list = session.selectList("dao.ActivityDAO.selectByDogNo", dogNo);
 		return list;
 	}
+	
+	public List<ActivityVO> selectAll(String teacherId) {
+		List<ActivityVO> list = session.selectList("dao.ActivityDAO.selectAll", teacherId);
+		return list;
+	}
 
 }

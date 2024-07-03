@@ -30,4 +30,10 @@ public class ActivityService {
 		return list;
 	}
 
+
+	public List<ActivityVO> searchAllActivity(String teacherId) {
+		List<ActivityVO> list = activityDao.selectAll(teacherId);
+		return list;
+	}
+
 }

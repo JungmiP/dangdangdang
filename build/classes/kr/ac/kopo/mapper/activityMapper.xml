@@ -39,8 +39,9 @@
   	</select>
     
   	<!-- 전체 활동일지 조회 -->
-  	<select id="selectAll" resultMap="activityMap">
+  	<select id="selectAll" parameterType="String" resultMap="activityMap">
   		<include refid="selectActivity" />
+  		where teacher_id = #{teacherId}
   		 order by activity_date desc
   	</select>
   	 
