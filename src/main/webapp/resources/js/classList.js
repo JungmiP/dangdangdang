@@ -171,7 +171,10 @@
 				date: tarDate
 			},
 			success : function(response){
-				
+				if(response == '' ){
+					let tr = "<tr><td colspan='8'>예약 내역이 없습니다</td></tr>"
+					$("#listTableBody").append(tr)
+				}
 				let tmp = JSON.parse(response)
 				$(tmp).each(function(idx){
 					

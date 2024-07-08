@@ -153,7 +153,7 @@
 	  	}
   	
   	function checkLogin(){
-  		if('${member}' != null){
+  		if(reserveForm.memberId.value != ''){
   			return true;
   		}
   		alert('로그인을 해주세요')

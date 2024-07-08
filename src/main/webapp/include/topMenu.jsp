@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-	<a href="/dangdangdang/index.jsp" class="navbar-brand">
+	<a href="/dangdangdang/" class="navbar-brand">
     	<h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>Dang</h1>
     </a>
 	<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

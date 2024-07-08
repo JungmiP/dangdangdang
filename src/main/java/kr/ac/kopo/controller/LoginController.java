@@ -15,14 +15,14 @@ public class LoginController implements Controller{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberVO member = new MemberVO();
-		//member.setId("pjm330");
-		//member.setName("박정미");
+		member.setId("pjm330");
+		member.setName("박정미");
 		
 		
 		 
-		member.setId("lora");
-		member.setName("로라");
-		member.setAdmin("A");
+		//member.setId("lora");
+		//member.setName("로라");
+		//member.setAdmin("A");
 		
 		request.getSession().setAttribute("member", member);
 		if(member.getAdmin() != null) {

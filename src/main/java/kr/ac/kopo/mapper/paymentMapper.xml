@@ -9,6 +9,13 @@
   		<result column="pass_no" property="passNo" />
   		<result column="pay_method" property="payMethod" />
   		<result column="pay_date" property="payDate" />
+  		<association property="refundVO" javaType="refundVO">
+  			<id property="no" column="refund_no" />
+  			<result property="amount" column="refund_amount" />
+  			<result property="refundDate" column="refund_date" />
+  			<result property="reason" column="reason" />
+  			<result property="status" column="status" />
+  		</association>
   	</resultMap>
   	
   	<sql id="selectPayment">
@@ -26,6 +33,7 @@
   		order by pay_date desc
   	</select>
   	
+  	<select id=""></select>
   	
   	<select id="selectAllPaging" parameterType="paymentVO" resultMap="paymentMap">
   	SELECT   NO, MEMBER_ID, PASS_NO , AMOUNT, PAY_METHOD, PAY_DATE

@@ -16,9 +16,11 @@ public class MyPaymentController implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberVO member = (MemberVO)request.getSession().getAttribute("member");
 		PaymentService service = new PaymentService();
-		List<PaymentVO> list = service.searchAll(member.getId());
-		request.setAttribute("paymentList", list);
-		return "/payment/myPayment.jsp";
+		if(member != null) {
+			List<PaymentVO> list = service.searchAll(member.getId());
+			request.setAttribute("paymentList", list);
+		}
+		return "/myPage/myPayment.jsp";
 	}
 
 }

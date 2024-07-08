@@ -14,14 +14,13 @@ public class RefundFormController implements Controller {
 		request.setCharacterEncoding("utf-8");
 		int paymentNo = Integer.parseInt(request.getParameter("paymentNo"));
 		String reason = request.getParameter("reason");
-		
 		RefundVO refund = new RefundVO();
 		refund.setPaymentNo(paymentNo);
 		refund.setReason(reason);
-		
+		System.out.println(refund);
 		RefundService service = new RefundService();
 		service.insert(refund);
-		return null;
+		return "/myPayment.do";
 	}
 
 }

@@ -10,6 +10,7 @@ public class PaymentVO {
 	private String payMethod;
 	private String payDate;
 	private Paging paging;
+	private RefundVO refundVO;
 	
 	public int getNo() {
 		return no;
@@ -54,13 +55,18 @@ public class PaymentVO {
 	
 	public void setPaging(Paging paging) {
 		this.paging = paging;
-	}
+	}	
 	
+	public RefundVO getRefundVO() {
+		return refundVO;
+	}
+	public void setRefundVO(RefundVO refundVO) {
+		this.refundVO = refundVO;
+	}
 	@Override
 	public String toString() {
 		return "PaymentVO [no=" + no + ", memberId=" + memberId + ", passNo=" + passNo + ", amount=" + amount
 				+ ", payMethod=" + payMethod + ", payDate=" + payDate + "]";
 	}
-
 	
 }

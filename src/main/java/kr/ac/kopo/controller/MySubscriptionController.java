@@ -18,7 +18,7 @@ public class MySubscriptionController implements Controller {
 		SubscriptionService service = new SubscriptionService();
 		List<SubscriptionVO> list = service.searchAll(member.getId());
 		request.setAttribute("subscriptionList", list);
-		return "/subscription/mySubscription.jsp";
+		return "/myPage/mySubscription.jsp";
 	}
 
 }

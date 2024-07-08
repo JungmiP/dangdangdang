@@ -184,8 +184,8 @@ function getClassList(tarDate){
 		},
 		success : function(response){
 			let list = JSON.parse(response)
-			console.log(list)
-			if (list != null){				
+			
+			if (list.length > 0){				
 				$(list).each(function(idx){
 					let tr = "<tr id='tr"+ this.no + "'><td>" + (idx + 1) + "</td>"
 						   + "<td>" + this.classDate.substring(0, 10) + "</td>"
@@ -199,6 +199,9 @@ function getClassList(tarDate){
 								
 					$("#listTableBody").append(tr)
 				})					
+			}else{
+				let tr = "<tr><td colspan='7'>예약 내역이 없습니다.</td></tr>"
+				$("#listTableBody").append(tr)
 			}
 		},
 		error : function(){
