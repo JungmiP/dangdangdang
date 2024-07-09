@@ -52,12 +52,18 @@
 		$("#staticBackdrop").css("display", "none")
 	}
 	
+	function closeRefundDetail(){
+		$("#refundDetail").css("display", "none")
+	}
+	
 	function confirmRefund(){
 		return confirm('정말 환불하시겠습니까?')
 	}
 	
-	function openRefundDetail(){
-		
+	function openRefundDetail(obj){
+		console.log(obj)
+		console.log(typeof obj)
+		$("#refundDetail").css("display", "block")
 	}
 	
 	$(document).ready(function(){
@@ -133,7 +139,7 @@
                 								<button class="btn btn-dark btn-sm" onclick="openRefundModal(${payment.no})">환불</button>
                 							</c:if>
                 							<c:if test="${not empty payment.refundVO.no }">
-                								<button class="btn btn-dark btn-sm" onclick="">환불상세</button>
+                								<button class="btn btn-dark btn-sm" onclick="openRefundDetail(${payment.refundVO})">환불상세</button>
                 							</c:if>
                 						</td>
                 					</tr>
@@ -184,15 +190,14 @@
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h1 class="modal-title fs-5" id="staticBackdropLabel">환불하기</h1>
-					        <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal()"></button>
+					        <h1 class="modal-title fs-5" id="refundDetailLabel">환불 상세보기</h1>
+					        <button type="button" class="btn-close"  aria-label="Close" onclick="closeRefundDetail()"></button>
 					      </div>
 					      <div class="modal-body">
 					       	
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
-					        <button type="submit" form="refundForm" class="btn btn-primary">완료</button>
+					        <button type="button" class="btn btn-secondary" onclick="closeRefundDetail()">Close</button>
 					      </div>
 					    </div>
 					  </div>
