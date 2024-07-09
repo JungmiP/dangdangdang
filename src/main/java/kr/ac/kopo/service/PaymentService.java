@@ -40,6 +40,11 @@ public class PaymentService {
 		List<PaymentVO> list = paymentDao.selectAll(memberId);
 		return list;
 	}
+
+	public List<PaymentVO> searchByMemberId(String memberId){
+		List<PaymentVO> list = paymentDao.selectByMemberId(memberId);
+		return list;
+	}
 	
 	public List<PaymentVO> searchAllPaging(PaymentVO payment){
 		if(payment.getPaging() == null) {

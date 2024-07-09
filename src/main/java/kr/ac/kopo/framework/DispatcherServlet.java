@@ -30,9 +30,13 @@ public class DispatcherServlet extends HttpServlet{
 		try {
 			Controller control = mappings.getController(uri);
 			String callPage = control.handleRequest(request, response);
-						
-			RequestDispatcher dispatcher = request.getRequestDispatcher(callPage);
-			dispatcher.forward(request, response);
+			if(callPage.startsWith("redirect:")) {
+				callPage = callPage.substring("redirect:".length());
+				response.sendRedirect(callPage);
+			}else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(callPage);
+				dispatcher.forward(request, response);
+			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();

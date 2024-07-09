@@ -17,8 +17,10 @@ public class MyPaymentController implements Controller{
 		MemberVO member = (MemberVO)request.getSession().getAttribute("member");
 		PaymentService service = new PaymentService();
 		if(member != null) {
-			List<PaymentVO> list = service.searchAll(member.getId());
+			List<PaymentVO> list = service.searchByMemberId(member.getId());
 			request.setAttribute("paymentList", list);
+			System.out.println(list.get(0));
+			System.out.println(list.get(0).getRefundVO().toString());
 		}
 		return "/myPage/myPayment.jsp";
 	}

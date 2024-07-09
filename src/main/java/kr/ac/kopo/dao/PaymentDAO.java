@@ -27,6 +27,11 @@ public class PaymentDAO {
 		List<PaymentVO> list = session.selectList("dao.PaymentDAO.selectAll", memberId);
 		return list;
 	}
+	
+	public List<PaymentVO> selectByMemberId(String memberId){
+		List<PaymentVO> list = session.selectList("dao.PaymentDAO.selectByMemberId", memberId);
+		return list;
+	}
 
 	public List<PaymentVO> selectAllPaging(PaymentVO payment){
 		List<PaymentVO> list = session.selectList("dao.PaymentDAO.selectAllPaging", payment);

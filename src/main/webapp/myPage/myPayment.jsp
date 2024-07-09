@@ -43,7 +43,7 @@
     <!-- Template Javascript -->
     <script src="/dangdangdang/resources/js/main.js"></script>
 	<script>
-	function openModal(no){
+	function openRefundModal(no){
 		$(refundForm.paymentNo).val(no)
 		$("#staticBackdrop").css("display", "block")
 	}
@@ -54,6 +54,10 @@
 	
 	function confirmRefund(){
 		return confirm('정말 환불하시겠습니까?')
+	}
+	
+	function openRefundDetail(){
+		
 	}
 	
 	$(document).ready(function(){
@@ -106,12 +110,13 @@
                 					<th>결제금액</th>
                 					<th>결제 방법</th>
                 					<th>결제 일자</th>
+                					<th>결제 상태</th>
                 					<th></th>
                 				</tr>
                 			</thead>
                 			<tbody>
                 				<c:if test="${ empty paymentList }">
-                					<tr><td colspan="7">결제 내역이 없습니다.</td></tr>
+                					<tr><td colspan="8">결제 내역이 없습니다.</td></tr>
                 				</c:if>
                 				<c:if test="${ not empty paymentList }">
                 					<c:forEach items="${ paymentList }" var="payment" varStatus="stat">
@@ -122,14 +127,22 @@
                 						<td>${ payment.amount }</td>
                 						<td>${ payment.payMethod }</td>
                 						<td>${ payment.payDate }</td>
-                						<td><button class="btn btn-dark btn-sm" onclick="openModal(${payment.no})">환불</button></td>
+                						<td>${ (empty payment.refundVO.no)? "결제 완료": (payment.refundVO.status eq "W")? "환불 처리중":(payment.refundVO.status eq "A")?"환불 완료": "환불 취소"}</td>
+                						<td>
+                							<c:if test="${empty payment.refundVO.no }">
+                								<button class="btn btn-dark btn-sm" onclick="openRefundModal(${payment.no})">환불</button>
+                							</c:if>
+                							<c:if test="${not empty payment.refundVO.no }">
+                								<button class="btn btn-dark btn-sm" onclick="">환불상세</button>
+                							</c:if>
+                						</td>
                 					</tr>
                 					</c:forEach>
                 				</c:if>
                 			</tbody>
                 		</table>
                 	</div>
-                	<!-- Modal -->
+                	<!-- Refund Modal -->
 					<div class="modal" id="staticBackdrop">
 					  <div class="modal-dialog">
 					    <div class="modal-content">
@@ -163,6 +176,30 @@
 					    </div>
 					  </div>
 					</div>
+                	<!-- Refund Modal End -->
+					
+					
+                	<!-- Refund Detail Modal -->
+					<div class="modal" id="refundDetail">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h1 class="modal-title fs-5" id="staticBackdropLabel">환불하기</h1>
+					        <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal()"></button>
+					      </div>
+					      <div class="modal-body">
+					       	
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+					        <button type="submit" form="refundForm" class="btn btn-primary">완료</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+                	<!-- Refund Detail Modal End -->
+                	
+                	
                 </div>
             </div>
         </div>

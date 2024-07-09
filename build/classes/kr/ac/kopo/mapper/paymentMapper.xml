@@ -5,8 +5,10 @@
 <mapper namespace="dao.PaymentDAO">
   	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
   	<resultMap type="paymentVO" id="paymentMap">
+  		<result column="no" property="no" />
   		<result column="member_id" property="memberId" />
   		<result column="pass_no" property="passNo" />
+  		<result column="amount" property="amount" />
   		<result column="pay_method" property="payMethod" />
   		<result column="pay_date" property="payDate" />
   		<association property="refundVO" javaType="refundVO">
@@ -33,7 +35,12 @@
   		order by pay_date desc
   	</select>
   	
-  	<select id=""></select>
+  	<select id="selectByMemberId" parameterType="String" resultMap="paymentMap">
+	SELECT p.NO, p.MEMBER_ID, p.PASS_NO, p.AMOUNT, p.pay_method, p.pay_date
+	     , r.no as refund_no, r.amount as refund_amount, r.refund_date, r.REASON, r.status 
+   	  FROM payment p LEFT JOIN refund r ON p.NO = r.PAYMENT_NO 
+ 	 WHERE MEMBER_ID = #{memberId}
+	</select>
   	
   	<select id="selectAllPaging" parameterType="paymentVO" resultMap="paymentMap">
   	SELECT   NO, MEMBER_ID, PASS_NO , AMOUNT, PAY_METHOD, PAY_DATE

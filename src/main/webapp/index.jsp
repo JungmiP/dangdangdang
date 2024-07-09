@@ -1,12 +1,24 @@
+<%@page import="kr.ac.kopo.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page errorPage="/error.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+String referer = request.getHeader("Referer");
+System.out.println(referer);
+String id = request.getParameter("id");
+//String loginid = request.getParameter("loginUser");
 
+System.out.println(id);
+//System.out.println(loginid);
+
+
+%>
 <head>
     <meta charset="utf-8">
+    <meta name="referrer" content="unsafe-url">
     <title>학교종이 댕댕댕</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -90,6 +102,7 @@
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Kindergarten Facilities</h1>
                     <p>강아지들이 안전하게 지낼 수 있는 시설과 노하우를 가진 전문 선생님들의 섬세한 케어</p>
+                    <p>${param.loginUser}</p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
