@@ -2,6 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>dangdangdang</display-name>
   
+  <filter>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>kr.ac.kopo.filter.CharacterEncodingFilte</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<servlet-name>dispatcherServlet</servlet-name>
+  </filter-mapping>
+  
   <servlet>
   	<servlet-name>dispatcherServlet</servlet-name>
   	<servlet-class>kr.ac.kopo.framework.DispatcherServlet</servlet-class>

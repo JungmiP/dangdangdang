@@ -9,10 +9,10 @@
 String referer = request.getHeader("Referer");
 System.out.println(referer);
 String id = request.getParameter("id");
-//String loginid = request.getParameter("loginUser");
+
 
 System.out.println(id);
-//System.out.println(loginid);
+
 
 
 %>

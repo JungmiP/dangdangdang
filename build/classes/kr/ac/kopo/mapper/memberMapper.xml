@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberDAO">
+  	<!-- DB의 컬럼명과 VO의 변수명 맵핑 -->
+  	<resultMap type="memberVO" id="memberMap">
+  		<result column="birth_date" property="birthDate" />
+  		<result column="basic_addr" property="basicAddr" />
+  		<result column="detail_addr" property="detailAddr" />
+  		<result column="reg_date" property="regDate" />
+  	</resultMap>
+  	
+  	<sql id="selectMember">
+  		select id, password, name, birth_date, phone, post, basic_addr, detail_addr, email, reg_date, grade, oauth, admin
+  		  from member
+  	</sql>
+  	
+  	
+  	<!-- 아이디로 조회 -->
+  	<select id="selectById" parameterType="String" resultMap="memberMap">
+  		<include refid="selectMember" />
+  		 where id = #{id}
+  	</select>
+  	
+ 
+</mapper>
