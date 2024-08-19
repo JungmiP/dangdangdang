@@ -1,7 +1,9 @@
+<%@page import="kr.ac.kopo.dao.MemberDAO"%>
 <%@page import="kr.ac.kopo.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page errorPage="/error.jsp" %>
+<%-- 
+<%@ page errorPage="/error.jsp" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,11 +11,13 @@
 String referer = request.getHeader("Referer");
 System.out.println(referer);
 String id = request.getParameter("id");
-
+if(id != null){
+	MemberDAO memberDao = new MemberDAO();
+	MemberVO member = memberDao.selectById(id);
+	request.getSession().setAttribute("member", member);
+}
 
 System.out.println(id);
-
-
 
 %>
 <head>

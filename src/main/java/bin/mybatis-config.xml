@@ -43,6 +43,7 @@
   </environments>
   <mappers>
     <mapper resource="/kr/ac/kopo/mapper/classMapper.xml" />
+    <mapper resource="/kr/ac/kopo/mapper/memberMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/passMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/paymentMapper.xml" />
     <mapper resource="/kr/ac/kopo/mapper/subscriptionMapper.xml" />
