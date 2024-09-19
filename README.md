@@ -15,6 +15,16 @@
 3. JSTL, EL, JSP - 동적 웹사이트를 Java 친화적으로 구현하기 위해 사용
 4. Ajax - 비동기 통신을 통해 빠른 반응형 페이지를 만들기 위해 사용
 
+## 다이어그램
+### UseCase
+<img src="https://github.com/user-attachments/assets/16645295-dc70-42b6-a62b-91bd109b2049" height="350">
+
+### ER
+<img src="https://github.com/user-attachments/assets/145da703-e6b5-4155-9bdf-2c4654498915" height="400">
+
+### Class
+<img src="https://github.com/user-attachments/assets/d232e0b9-865e-45ab-bd1a-d49bd0d9c162" height="450">
+
 ## 주요 기능
 - 사용자
 1. 이용권의 종류를 확인하고 구입할 수 있습니다. ![이용권](https://github.com/user-attachments/assets/7b361ad1-6051-4a1c-8525-c15530925b5a)![결제](https://github.com/user-attachments/assets/36c09219-878d-4526-b6a5-50e9a29cb1c3)![결제완료](https://github.com/user-attachments/assets/f9a81691-d8fc-4d55-83f1-68e9cb06e76c)
